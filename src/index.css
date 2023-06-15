@@ -3,11 +3,7 @@
   line-height: 1.5;
   font-weight: 400;
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-  height: 100%;
-  /**============= COLORES ===================*/
+  /**============= COLORES ===================*/ 
   --color-base: #000000;
   --color-secundario: #ffffff;
   --color-category: #08090b;
@@ -18,4 +14,10 @@
   --color-seleccionar-header: #454545;
 
   --color-modal-black: #1d2026;
+}
+.root{
+  height: 100%;
+}
+body{
+  background-color: var(--color-base);
 }

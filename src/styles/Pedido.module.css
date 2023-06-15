@@ -1,16 +1,3 @@
-/* * {
-  padding: 0;
-  margin: 0;
-}
-body {
-  width: 100%;
-  height: 100%;
-  background-color: red;
-} */
-#root {
-  background-color: rebeccapurple;
-  height: 100%;
-}
 
 .content_boss_pedido {
   width: 100%;
@@ -36,7 +23,7 @@ body {
 
 .content_main_pedido {
   width: 100%;
-  height: 100%;
+  height: 75vh;
   display: flex;
   align-items: center;
   justify-content: center;

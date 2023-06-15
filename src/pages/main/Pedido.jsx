@@ -4,28 +4,28 @@ import styles from "../../styles/Pedido.module.css";
 
 function Pedido() {
   return (
-    <div className={styles["content_boss_pedido"]}>
+    <div className={styles.content_boss_pedido}>
       <Header />
-      <div className="content_main_pedido">
-        <div className="content_login_pedido">
-          <div className="content_text">
-            <p className="title_pedido">Inicia Sesión</p>
-            <p className="description_pedido">
+      <div className={styles.content_main_pedido}>
+        <div className={styles.content_login_pedido}>
+          <div className={styles.content_text}>
+            <p className={styles.title_pedido}>Inicia Sesión</p>
+            <p className={styles.description_pedido}>
               Iniciar sesión o registrate para ver los pedidos realizados y
               pendientes.
             </p>
           </div>
-          <div className="separacion"></div>
-          <div className="content_button">
-            <button className="inicia_sesion">
+          <div className={styles.separacion}></div>
+          <div className={styles.content_button}>
+            <button className={styles.inicia_sesion}>
               Iniciar Sesión
-              <span className="icon">
+              <span className={styles.icon}>
                 <img src={Next} />
               </span>
             </button>
-            <button className="registrar">
+            <button className={styles.registrar}>
               Registrar
-              <span className="icon">
+              <span className={styles.icon}>
                 <img src={Next} />
               </span>
             </button>

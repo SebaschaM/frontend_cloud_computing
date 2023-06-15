@@ -34,7 +34,7 @@
   justify-content: space-between;
   padding-left: 3%;
 }
-.content_menu .p:hover {
+.content_menu p:hover {
   color: var(--color-letra-secundario);
 }
 .content_sucursal_main {

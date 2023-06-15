@@ -3,6 +3,15 @@
   margin: 0;
 }
 
+input{
+  width: 100%;
+  font-size: 13px;
+  background-color: #28282a;
+  border-radius: 5px;
+  border: none;
+  outline: none;
+  padding-left: 10px;
+}
 .content_carrito {
   display: flex;
   width: 100%;
@@ -11,10 +20,10 @@
 }
 
 .content_lista {
-  padding: 2%;
-  width: 48%;
-  margin-top: 45px;
+  padding: 10px;
+  width: 50%;
   height: auto;
+  margin: 0% 2%;
 }
 .content_cantidad {
   width: auto;
@@ -24,10 +33,6 @@
 
 .content_cantidad input {
   width: 35px;
-  outline: none;
-  border: none;
-  background-color: #141415;
-  border: none;
 }
 
 .delete_btn {
@@ -54,7 +59,8 @@
   margin: 0 2%;
 }
 .detalle_tarjeta {
-  width: 40%;
+  width: 50%;
+  margin: 0% 4%;
 }
 
 .detalle_carrito {
@@ -67,7 +73,7 @@
 
 .detalle_carrito p {
   width: auto;
-  font-size: 18px;
+  font-size: 13px;
 }
 .content_form_carrito {
   height: auto;
@@ -95,60 +101,43 @@
   background-color: #141415;
 }
 
-.content_fecha {
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-  height: 50px;
-}
-
 .content_detalle {
   height: 150px;
   width: 100%;
-  margin-top: 50px;
+  margin: 10px 0 20px 0;
 }
 
 .content_nombre_tarjeta {
   width: 100%;
   height: 150px;
-  margin-bottom: 25px;
   background-color: #141415;
 }
 
 .content_nombre_tarjeta input {
   width: 98%;
   height: 40px;
-  background-color: #28282a;
-  border-radius: 10px;
-  outline: none;
 }
 
-.content_fecha input {
-  width: 90%;
+.content_fecha {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #BBBBBB;
+}
+.title {
+  font-size: 13px;
+  margin: 10px 0;
+  color: var(--color-secundario);
+}
+
+.fecha_input{
+  width: 50%;
+  height: 20px;
+  margin-right: 2%;
+}
+
+.fecha_input input {
+  width: 100%;
   height: 40px;
-  background-color: #28282a;
-  border-radius: 10px;
-  outline: none;
-  margin: 10px 0;
-}
-
-.title2_type {
-  font-size: 18px;
-  margin: 10px 0;
-}
-.title3_name {
-  font-size: 18px;
-  margin: 10px 0;
-}
-.title4_number {
-  font-size: 18px;
-  margin: 10px 0;
-}
-.title5_date {
-  font-size: 18px;
-  margin: 10px 0;
-}
-.title6_cvv {
-  font-size: 18px;
-  margin: 10px 0;
 }
