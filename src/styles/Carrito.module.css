@@ -1,0 +1,154 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+
+.content_carrito {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  flex-direction: row;
+}
+
+.content_lista {
+  padding: 2%;
+  width: 48%;
+  margin-top: 45px;
+  height: auto;
+}
+.content_cantidad {
+  width: auto;
+  height: auto;
+  background-color: #141415;
+}
+
+.content_cantidad input {
+  width: 35px;
+  outline: none;
+  border: none;
+  background-color: #141415;
+  border: none;
+}
+
+.delete_btn {
+  height: 50px;
+  width: 50px;
+  background-color: #141415;
+}
+
+.Delete {
+  height: 50px;
+  width: 50px;
+  background-color: #14141500;
+  outline: none;
+  border: none;
+}
+
+.Delete:hover {
+  transform: scale(1.2);
+}
+
+.tarjeta_main {
+  width: auto;
+  height: auto;
+  margin: 0 2%;
+}
+.detalle_tarjeta {
+  width: 40%;
+}
+
+.detalle_carrito {
+  display: flex;
+  flex-direction: row;
+  height: 50px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.detalle_carrito p {
+  width: auto;
+  font-size: 18px;
+}
+.content_form_carrito {
+  height: auto;
+}
+
+.tajeta_main {
+  background-color: #141415;
+  padding: 30px;
+  border-radius: 30px;
+}
+.detalle_tarjeta div {
+  background-color: #141415;
+  height: auto;
+}
+.titulo_card {
+  height: 50px;
+  width: 100%;
+  font-weight: bold;
+  background-color: #141415;
+}
+
+.title_card {
+  font-size: 25px;
+  color: white;
+  background-color: #141415;
+}
+
+.content_fecha {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 50px;
+}
+
+.content_detalle {
+  height: 150px;
+  width: 100%;
+  margin-top: 50px;
+}
+
+.content_nombre_tarjeta {
+  width: 100%;
+  height: 150px;
+  margin-bottom: 25px;
+  background-color: #141415;
+}
+
+.content_nombre_tarjeta input {
+  width: 98%;
+  height: 40px;
+  background-color: #28282a;
+  border-radius: 10px;
+  outline: none;
+}
+
+.content_fecha input {
+  width: 90%;
+  height: 40px;
+  background-color: #28282a;
+  border-radius: 10px;
+  outline: none;
+  margin: 10px 0;
+}
+
+.title2_type {
+  font-size: 18px;
+  margin: 10px 0;
+}
+.title3_name {
+  font-size: 18px;
+  margin: 10px 0;
+}
+.title4_number {
+  font-size: 18px;
+  margin: 10px 0;
+}
+.title5_date {
+  font-size: 18px;
+  margin: 10px 0;
+}
+.title6_cvv {
+  font-size: 18px;
+  margin: 10px 0;
+}
