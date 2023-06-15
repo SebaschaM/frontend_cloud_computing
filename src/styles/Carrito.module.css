@@ -21,9 +21,9 @@ input{
 
 .content_lista {
   padding: 10px;
-  width: 50%;
+  width: 60%;
   height: auto;
-  margin: 0% 2%;
+  margin: 2% 0 30px 2%;
 }
 .content_cantidad {
   width: auto;
@@ -33,6 +33,7 @@ input{
 
 .content_cantidad input {
   width: 35px;
+  background-color: #141415;
 }
 
 .delete_btn {
@@ -59,8 +60,8 @@ input{
   margin: 0 2%;
 }
 .detalle_tarjeta {
-  width: 50%;
-  margin: 0% 4%;
+  width: 40%;
+  margin: 0 5% 30px 7%;
 }
 
 .detalle_carrito {
@@ -75,9 +76,6 @@ input{
   width: auto;
   font-size: 13px;
 }
-.content_form_carrito {
-  height: auto;
-}
 
 .tajeta_main {
   background-color: #141415;
@@ -85,7 +83,6 @@ input{
   border-radius: 30px;
 }
 .detalle_tarjeta div {
-  background-color: #141415;
   height: auto;
 }
 .titulo_card {
@@ -107,6 +104,49 @@ input{
   margin: 10px 0 20px 0;
 }
 
+.content_form_carrito {
+  height: auto;
+}
+.content_tipo_tarjeta{
+  width: 100%;
+  height: auto;
+}
+.content_tarjeta_img{
+  width: 100%;
+  height: 50px;
+  display: flex;
+  flex-direction: row;
+}
+.content_tarjeta_img > div{
+  flex: 1;
+  height: 60px;
+  border-radius: 5px;
+  margin-right: 10px;
+  background-color: #28282A;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.content_tarjeta_img > div:last-child{
+  margin-right: 0px;
+}
+
+.img_target_1{
+  width: 40%;
+  height: auto;
+}
+.img_target_2{
+  width: 40%;
+  height: auto;
+}
+.img_target_3{
+  width: 80%;
+  height: auto;
+}
+.img_target_4{
+  width: 30%;
+  height: auto;
+}
 .content_nombre_tarjeta {
   width: 100%;
   height: 150px;
@@ -134,7 +174,7 @@ input{
 .fecha_input{
   width: 50%;
   height: 20px;
-  margin-right: 2%;
+  margin-right: 3%;
 }
 
 .fecha_input input {

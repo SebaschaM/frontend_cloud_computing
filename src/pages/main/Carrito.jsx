@@ -2,6 +2,12 @@ import Next from "../../assets/icon-next.svg";
 import Header from "../../components/Header";
 import Product from "../../assets/Wine.png";
 import Delete from "../../assets/IconDelete.svg";
+
+import O1 from "../../assets/mastercard.png";
+import O2 from "../../assets/visa.png";
+import O3 from "../../assets/dinners.png";
+import O4 from "../../assets/plin.png";
+
 import styles from "../../styles/Carrito.module.css";
 import styles2 from "../../styles/Pedido.module.css";
 
@@ -11,7 +17,7 @@ function Carrito() {
       <Header />
       <div className={styles.content_carrito}>
         <div className={styles.content_lista}>
-          {}
+          { }
           <div className={styles2.content_unidad_product}>
             <div className={styles2.content_product_main}>
               <div className={styles2.product_description_img}>
@@ -104,8 +110,20 @@ function Carrito() {
               <p className={styles.title_card}>Detalle de tarjeta</p>
             </div>
 
-            <p className={styles.title}>Tipo de tarjeta</p>
             <form onSubmit="" className={styles.content_form_carrito}>
+              <div className={styles.content_tipo_tarjeta}>
+                <p className={styles.title}>Tipo de tarjeta</p>
+                <div className={styles.content_tarjeta_img}>
+                  <div>
+                    <img className={styles.img_target_1} src={O1} /></div>
+                  <div>
+                    <img className={styles.img_target_2} src={O2} /></div>
+                  <div>
+                    <img className={styles.img_target_3} src={O3} /></div>
+                  <div>
+                    <img className={styles.img_target_4} src={O4} /></div>
+                </div>
+              </div>
               <div className={styles.content_nombre_tarjeta}>
                 <p className={styles.title}>Nombre del propietario</p>
                 <input type="text" placeholder="Nombre del propietario"></input>
@@ -123,31 +141,31 @@ function Carrito() {
                   <input type="text" placeholder="CVV"></input>
                 </div>
               </div>
-            </form>
 
-            <div className={styles.content_detalle}>
-              <div className={styles.detalle_carrito}>
-                <p>SubTotal</p>
-                <p>S/.150</p>
+              <div className={styles.content_detalle}>
+                <div className={styles.detalle_carrito}>
+                  <p>SubTotal</p>
+                  <p>S/.150</p>
+                </div>
+                <div className={styles.detalle_carrito}>
+                  <p>Delivery</p>
+                  <p>S/.5</p>
+                </div>
+                <div className={styles.detalle_carrito}>
+                  <p>Total</p>
+                  <p>S/.155</p>
+                </div>
               </div>
-              <div className={styles.detalle_carrito}>
-                <p>Delivery</p>
-                <p>S/.5</p>
+              <div className={styles2.pedido_btn}>
+                <button className={styles2.Pedir}>
+                  <p className={styles2.btn_total}>S/.5</p>
+                  Pagar Ahora
+                  <span className={styles2.icon}>
+                    <img src={Next} />
+                  </span>
+                </button>
               </div>
-              <div className={styles.detalle_carrito}>
-                <p>Total</p>
-                <p>S/.155</p>
-              </div>
-            </div>
-            <div className={styles2.pedido_btn}>
-              <button className={styles2.Pedir}>
-                <p className={styles2.btn_total}>S/.5</p>
-                Pagar Ahora
-                <span className={styles2.icon}>
-                  <img src={Next} />
-                </span>
-              </button>
-            </div>
+            </form>
           </div>
         </div>
       </div>
