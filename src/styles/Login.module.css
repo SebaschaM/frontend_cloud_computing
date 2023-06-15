@@ -24,6 +24,10 @@
   align-items: center;
   justify-content: flex-start;
 }
+.Atras_main{
+  margin-left: 10%;
+  width: auto;
+}
 .Atras {
   margin-left: 10%;
   width: 40px;
@@ -83,15 +87,20 @@
   border: 1px solid #949494;
   background-color: #ffffff;
 }
-.btn_ingresar {
+
+.btn_ingresar_main{
   width: 50%;
+}
+
+.btn_ingresar {
+  width: 100%;
   padding: 10px 0px;
   margin-top: 30px;
   border-radius: 12px;
   margin-bottom: 10px;
   font-size: 13px;
   background-color: var(--color-base);
-  color: var(--color-secundario);
+  color: var(--color-secundario); 
 }
 .btn_ingresar:hover {
   box-shadow: 4px 8px 29px -12px rgba(0, 0, 0, 0.75);
@@ -110,6 +119,9 @@
 .content_foot p {
   color: #626262;
   font-size: 13px;
+}
+.text_main{
+  width: auto;
 }
 .text {
   width: auto;

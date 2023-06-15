@@ -34,7 +34,12 @@
   justify-content: space-between;
   padding-left: 3%;
 }
-.content_menu p:hover {
+.p_main{
+  width: 30%;
+  height: auto;
+  text-decoration: none;
+}
+.content_menu a p:hover {
   color: var(--color-letra-secundario);
 }
 .content_sucursal_main {
