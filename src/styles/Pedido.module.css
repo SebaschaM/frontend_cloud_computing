@@ -1,13 +1,11 @@
 .modal_principal {
+  width: 100%;
+  height: auto;
+  background-color: var(--color-modal-black);
   position: fixed;
-  top: 0;
-  width: 100vw;
-  height: 100vh;
-  background-color: rgba(0, 0, 0, 0.5);
-  z-index: 9999;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .content_boss_pedido {
@@ -155,8 +153,12 @@
 .content_buton_Pedido button {
   background-color: #141415;
 }
-.btn_Activo {
+.btn_Activo_Complete{
   width: 50%;
+  height: 100%;
+}
+.btn_Activo {
+  width: 100%;
   height: 100%;
   border-top: 0px;
   border-left: 0px;
@@ -165,7 +167,7 @@
   border-bottom: 0px;
 }
 .btn_Completado {
-  width: 50%;
+  width: 100%;
   height: 100%;
   border-top: 0px;
   border-left: 0px;
@@ -303,7 +305,6 @@
   left: 50%;
   transform: translate(-50%, -50%);
   background-color: rgba(0, 0, 0, 0.564);
-  display: none;
 }
 .content_modal_pedido {
   width: 30%;
@@ -315,7 +316,6 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  display: none;
 }
 .content__modal_text {
   width: auto;

@@ -1,8 +1,9 @@
-import Header from "../../components/Header";
+import Header from "../../components/Header_Logeado";
 import Next from "../../assets/icon-next.svg";
 import Product from "../../assets/Wine.png";
 import styles from "../../styles/Pedido.module.css";
 import { useState } from "react";
+import { Link } from 'react-router-dom';
 
 function Pedido_Complete() {
 
@@ -21,8 +22,12 @@ function Pedido_Complete() {
             </p>
           </div>
           <div className={styles.content_buton_Pedido}>
-            <button className={`${styles.btn_Activo} ${styles.btnNoselect}`}>Activos</button>
-            <button className={`${styles.btn_Completado} ${styles.btnSelect}`}>Completados</button>
+            <Link to="/pedidosActivo" className={styles.btn_Activo_Complete}>
+              <button className={`${styles.btn_Activo} ${styles.btnNoselect}`}>Activos</button>
+            </Link>
+            <Link to="/pedidosActivo" className={styles.btn_Activo_Complete}>
+              <button className={`${styles.btn_Completado} ${styles.btnSelect}`}>Completados</button>
+            </Link>
           </div>
         </div>
 

@@ -3,8 +3,10 @@ import Next from "../../assets/icon-next.svg";
 import Product from "../../assets/Wine.png";
 import styles from "../../styles/Pedido.module.css";
 import { useState } from "react";
+import { Link } from 'react-router-dom';
 
 function Pedido_Activo() {
+
   const [showModalProduct, setShowModalProduct] = useState(false);
 
   return (
@@ -13,15 +15,21 @@ function Pedido_Activo() {
       <div className={styles.content_main_pedido_logeado}>
         <div className={styles.content_login_pedido_logeado}>
           <div className={`${styles.content_text} ${styles.logeado}`}>
-            <p className={styles.title_pedcido_logeado}>Pedidos</p>
+            <p className={styles.title_pedido_logeado}>Pedidos</p>
             <p className={styles.description_pedido}>
               Pedidos completados y pendientes, cancela en cualquier momento o
               pidelo de nuevo.
             </p>
           </div>
           <div className={styles.content_buton_Pedido}>
-            <button className={`${styles.btn_Activo} ${styles.btnSelect}`}>Activos</button>
-            <button className={`${styles.btn_Completado} ${styles.btnNoselect}`}>Completados</button>
+
+            <Link to="/pedidosActivo" className={styles.btn_Activo_Complete}>
+              <button className={`${styles.btn_Activo} ${styles.btnSelect}`}>Activos</button>
+            </Link>
+
+            <Link to="/pedidosComplete" className={styles.btn_Activo_Complete}>
+              <button className={`${styles.btn_Completado} ${styles.btnNoselect}`}>Completados</button>
+            </Link>
           </div>
         </div>
 
