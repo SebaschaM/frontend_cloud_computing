@@ -9,10 +9,10 @@ function Header() {
         <p className={styles.name_sucursal}>Licorería “León”</p>
       </div>
       <div className={styles.content_menu}>
-        <p className={styles.inicio}>Inicio</p>
-        <p className={styles.productos}>Productos</p>
-        <p className={styles.sobrenosotros}>Sobre nosotros</p>
-        <p className={styles.pedido}>Pedidos</p>
+        <p className={styles.init}>Inicio</p>
+        <p className={styles.products}>Productos</p>
+        <p className={styles.about}>Sobre nosotros</p>
+        <p className={styles.orders}>Pedidos</p>
 
         <div className={styles.content_sucursal_main}>
           <div className={styles.content_sucursal}>

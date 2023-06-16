@@ -4,6 +4,14 @@
   color: var(--color-letra-home);
   font-size: 15px;
 }
+
+.init,
+.products,
+.about,
+.orders {
+  cursor: pointer;
+}
+
 .content_main {
   width: 100%;
   height: 100px;
@@ -34,7 +42,7 @@
   justify-content: space-between;
   padding-left: 3%;
 }
-.p_main{
+.p_main {
   width: 30%;
   height: auto;
   text-decoration: none;
@@ -47,6 +55,8 @@
   height: auto;
   display: flex;
   flex-direction: row;
+  align-items: center;
+  justify-content: center;
 }
 .content_sucursal {
   width: 25px;
@@ -80,6 +90,7 @@
   padding: 10px;
   outline: none;
   border: none;
+  cursor: pointer;
   background-color: var(--color-base);
 }
 .sucursal:hover {
@@ -87,6 +98,7 @@
 }
 .sucursal option {
   padding: 20px;
+  cursor: pointer;
 }
 .btn_carrito {
   width: 45px;
@@ -94,6 +106,7 @@
   padding: 10px;
   border: none;
   border-radius: 50px;
+  cursor: pointer;
   background-color: var(--color-base);
 }
 .btn_carrito:hover {
@@ -104,10 +117,11 @@
   height: 100%;
   fill: var(--color-letra-home);
 }
-.btn_Sesion {
+.btn_sesion {
   margin-right: 3%;
   padding: 10px 30px;
   border-radius: 50px;
+  cursor: pointer;
   background-color: var(--color-base);
 }
 

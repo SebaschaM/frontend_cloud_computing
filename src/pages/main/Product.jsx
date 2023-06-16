@@ -7,6 +7,7 @@ import styles from "../../styles/Product.module.css";
 
 function Product() {
   const [showModalProduct, setShowModalProduct] = useState(false);
+  const [count, setCount] = useState(1);
 
   return (
     <>
@@ -95,10 +96,126 @@ function Product() {
 
       {/* Modal */}
       {showModalProduct && (
-        <div className={styles.modal}>
-          <div className={styles.modal_content}>
-            <h1>Contenido </h1>
-            <button onClick={() => setShowModalProduct(false)}>Cerrar</button>
+        <div
+          className={styles.modal}
+          onClick={() => setShowModalProduct(false)}
+        >
+          <div
+            className={styles.modal_content}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className={styles.modal_head}>
+              <p className={styles.modal_description_title}>Detalle Producto</p>
+              <p className={styles.modal_description_id}>
+                Código de Producto N° 1
+              </p>
+              <p className={styles.modal_description}>
+                Agrega productos al carrito para poder comprarlos y selecciona
+                la cantidad deseada.
+              </p>
+            </div>
+            <div className={styles.modal_detail_product}>
+              <img
+                className={styles.modal_product_img}
+                src={product1}
+                alt="Wine"
+              />
+              <div className={styles.modal_product_container}>
+                <div className={styles.modal_product_info}>
+                  <p className={styles.modal_product_name}>
+                    Vino semiseco (QUEIROLO)
+                  </p>
+                  <table>
+                    <thead>
+                      <tr>
+                        <td className={styles.modal_description_td}>
+                          Detalle:
+                        </td>
+                        <td className={styles.modal_description_td}>
+                          Precio unitario:
+                        </td>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td className={styles.modal_description_tbody}>75mL</td>
+                        <td className={styles.modal_description_tbody}>
+                          S/ 20.00
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div className={styles.modal_product_quantity}>
+                  <button
+                    className={styles.btn_event}
+                    onClick={() => {
+                      if (count > 1) {
+                        setCount((prevCount) => prevCount - 1);
+                      }
+                    }}
+                  >
+                    <svg
+                      strokeWidth="1.9"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M6 12h12"
+                        stroke="#FFFFFF"
+                        strokeWidth="1.9"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      ></path>
+                    </svg>
+                  </button>
+                  <p className={styles.product_quantity}>{count}</p>
+                  <button
+                    className={styles.btn_event}
+                    onClick={() => setCount((count) => count + 1)}
+                  >
+                    <svg
+                      strokeWidth="1.9"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M6 12h6m6 0h-6m0 0V6m0 6v6"
+                        stroke="#FFFFFF"
+                        strokeWidth="1.9"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      ></path>
+                    </svg>
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div className={styles.modal_cart_option}>
+              <p className={styles.product_price_cart}>S/ {count * 20}.00</p>
+              <button className={styles.btn_event_add}>
+                <div className={styles.btn_cart}>
+                  <p className={styles.txt_add_cart}>Agregar al carrito</p>
+                  <svg
+                    className={styles.btn_add_cart}
+                    strokeWidth="1.9"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M9 6l6 6-6 6"
+                      stroke="#000000"
+                      strokeWidth="1.9"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    ></path>
+                  </svg>
+                </div>
+              </button>
+            </div>
           </div>
         </div>
       )}

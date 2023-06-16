@@ -1,5 +1,14 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { Carrito, Home, Login, Pedido, Pedido_Activo, Pedido_Complete, Product, Register } from "../pages";
+import {
+  Carrito,
+  Home,
+  Login,
+  Pedido,
+  Pedido_Activo,
+  Pedido_Complete,
+  Product,
+  Register,
+} from "../pages";
 
 export const AppRouter = () => {
   return (
