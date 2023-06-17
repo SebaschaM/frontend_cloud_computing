@@ -1,0 +1,86 @@
+.title_perfil {
+  font-size: 25px;
+  height: 40px;
+}
+.content_perfil {
+  padding: 20px;
+}
+.perfil_main {
+  width: auto;
+  height: auto;
+  margin: 0 2%;
+  margin-top: 2%;
+  background-color: #141415;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  padding-top: 20px;
+}
+.detalle_perfil {
+  width: 100%;
+}
+.content_form_perfil {
+  height: auto;
+}
+.content_detalleperfil {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.content_detalleperfil button {
+  background-color: #141415;
+  outline: none;
+  width: 50%;
+  padding: 15px 0;
+  margin-top: 40px;
+  font-size: 17px;
+}
+
+.datos_main {
+  width: auto;
+  height: auto;
+  margin: 0 2%;
+  background-color: #141415;
+  border-radius: 10px;
+  padding: 20px;
+}
+.detalle_datos {
+  width: 100%;
+  margin-top: 20px;
+}
+.content_form_datos {
+  width: 100%;
+}
+
+.content_detalledatos1 {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.content_detalledatos2 {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+input {
+  height: 40px;
+  margin: 10px;
+}
+
+.filas {
+  width: 50%;
+  margin-right: 3%;
+}
+
+.cerrar_btn {
+  width: auto;
+  height: 100%;
+  margin-right: 30px;
+  margin-left: 10px;
+  padding-top: 40px;
+  background-color: #14141500;
+}

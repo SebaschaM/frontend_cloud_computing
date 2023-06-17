@@ -8,6 +8,8 @@ import {
   Pedido_Complete,
   Product,
   Register,
+  Perfil,
+  Perfil_Actualizar,
 } from "../pages";
 
 export const AppRouter = () => {
@@ -22,6 +24,8 @@ export const AppRouter = () => {
         <Route path="/pedidos" element={<Pedido />} />
         <Route path="/pedidosActivo" element={<Pedido_Activo />} />
         <Route path="/pedidosComplete" element={<Pedido_Complete />} />
+        <Route path="/perfil" element={<Perfil />} />
+        <Route path="/perfilActualizar" element={<Perfil_Actualizar />} />
       </Routes>
     </BrowserRouter>
   );

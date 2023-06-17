@@ -6,3 +6,5 @@ export { default as Pedido } from "./main/Pedido";
 export { default as Pedido_Activo } from "./main/Pedido_Activo";
 export { default as Pedido_Complete } from "./main/Pedido_Complete";
 export { default as Product } from "./main/Product";
+export { default as Perfil } from "./main/Perfil";
+export { default as Perfil_Actualizar } from "./main/Perfil_Actualizar";
