@@ -1,5 +1,5 @@
 import Next from "../../assets/icon-next.svg";
-import Header from "../../components/Header";
+import Header from "../../components/Header_Logeado";
 import Product from "../../assets/Wine.png";
 import Delete from "../../assets/IconDelete.svg";
 
@@ -126,19 +126,19 @@ function Carrito() {
               </div>
               <div className={styles.content_nombre_tarjeta}>
                 <p className={styles.title}>Nombre del propietario</p>
-                <input type="text" placeholder="Nombre del propietario"></input>
+                <input type="text" placeholder="Nombre del propietario" required="true" />
                 <p className={styles.title}>Número de tarjeta</p>
-                <input type="text" placeholder="1111 2222 3333 4444"></input>
+                <input type="number" placeholder="1111 2222 3333 4444" required="true" />
               </div>
 
               <div className={styles.content_fecha}>
                 <div className={styles.fecha_input}>
                   <p className={styles.title}>Fecha de caducidad</p>
-                  <input type="date" placeholder="MM/AA"></input>
+                  <input type="date" placeholder="MM/AA" required="true" />
                 </div>
                 <div className={styles.fecha_input}>
                   <p className={styles.title}>CVV</p>
-                  <input type="text" placeholder="CVV"></input>
+                  <input type="number" placeholder="CVV" required="true" maxLength="3" />
                 </div>
               </div>
 

@@ -1,43 +1,37 @@
-import Header from "../../components/Header";
+import Header from "../../components/Header_Logeado";
 import styles from "../../styles/Perfil.module.css";
-import styles2 from "../../styles/Pedido.module.css";
+import stylesPedido from "../../styles/Pedido.module.css";
 import Next from "../../assets/icon-next.svg";
+import { Link } from 'react-router-dom';
 
 function Perfil_Actualizar() {
   return (
     <>
       <Header />
-      <div className={styles.detalle_perfil}>
-        <div className={styles.perfil_main}>
-          <form className={styles.content_form_perfil}>
-            <div className={styles.content_perfil}>
-              <p className={styles.title_perfil}>Perfil</p>
-              <p>
-                Actualizar y editar tus datos personales, para un envio de
-                productos exitosos.
-              </p>
-            </div>
-            <div className={styles.content_detalleperfil}>
-              <button
-                className={`${styles2.btn_Activo} ${styles2.btnNoSelect}`}
-              >
-                Datos personales
-              </button>
-              <button
-                className={`${styles2.btn_Completado} ${styles2.btnselect}`}
-              >
-                Actualizar Datos
-              </button>
-            </div>
-          </form>
-        </div>
-      </div>
+      <div className={stylesPedido.content_main_pedido_logeado}>
+        <div className={stylesPedido.content_login_pedido_logeado}>
+          <div className={`${stylesPedido.content_text} ${stylesPedido.logeado}`}>
+            <p className={stylesPedido.title_pedido_logeado}>Perfil</p>
+            <p className={stylesPedido.description_pedido}>
+              Actualizar y editar tus datos personales, para un envio de
+              productos exitosos.
+            </p>
+          </div>
+          <div className={stylesPedido.content_buton_Pedido}>
 
-      <div className={styles.detalle_datos}>
+            <Link to="/perfil" className={stylesPedido.btn_Activo_Complete}>
+              <button className={`${stylesPedido.btn_Activo} ${stylesPedido.btnNoselect}`}>Datos personales</button>
+            </Link>
+
+            <Link to="/perfilActualizar" className={stylesPedido.btn_Activo_Complete}>
+              <button className={`${stylesPedido.btn_Completado} ${stylesPedido.btnSelect}`}>Actualizar Datos</button>
+            </Link>
+          </div>
+        </div>
         <div className={styles.datos_main}>
           <form className={styles.content_form_datos}>
-            <div>
-              <p className={styles.title_perfil}>Datos Personales</p>
+            <div className={styles.content_form_title}>
+              <p className={styles.title_perfil}>Actualizar Datos:</p>
             </div>
             <div className={styles.content_detalledatos1}>
               <div className={styles.filas}>
@@ -63,12 +57,14 @@ function Perfil_Actualizar() {
             </div>
 
             <div className={styles.cerrar_btn}>
-              <button className={styles2.Cancelar}>
-                Actualizar Datos
-                <span className={styles2.icon}>
-                  <img src={Next} />
-                </span>
-              </button>
+              <Link to="/perfil" >
+                <button className={stylesPedido.Cancelar}>
+                  Actualizar Datos
+                  <span className={stylesPedido.icon}>
+                    <img src={Next} />
+                  </span>
+                </button>
+              </Link>
             </div>
           </form>
         </div>

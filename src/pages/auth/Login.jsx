@@ -10,25 +10,27 @@ import { useNavigate } from 'react-router-dom';
 
 function Login() {
 
-  // const navigate = useNavigate();
-  // const [formData, setFormData] = useState({});
-  // const { register, handleSubmit, formState: { errors } } = useForm();
+  const navigate = useNavigate();
+  const [formData, setFormData] = useState({});
+  const { register, handleSubmit, formState: { errors } } = useForm();
 
-  // const onSubmit = async data => {
-  //   setFormData(data);
+  const onSubmit = async data => {
+    setFormData(data);
 
-  //   try {
-  //     const response = await axios.post('http://localhost:3000/api/auth/login', data);
-  //     console.log(response.data);
-  //     if (response.data.success) {
-  //       navigate("/home");
-  //     } else {
-  //       console.log("Error en el registro");
-  //     }
-  //   } catch (error) {
-  //     console.log(error.response.data);
-  //   }
-  // };
+    try {
+      const response = await axios.post('http://localhost:3000/api/auth/login', data);
+      console.log(response.data);
+      if (response.data.success) {
+        navigate("/home");
+        console.log("SUCCES en el registro");
+      } else {
+        console.log("Error en el registro");
+      }
+    } catch (error) {
+      console.log(error.response.data);
+      console.log("Error ERROR en el registro");
+    }
+  };
 
   return (
     <div className={styles["content_boss"]}>
@@ -44,34 +46,34 @@ function Login() {
             <p className={styles.description}>Bienvenido a nuestra página</p>
           </div>
           <form
-            // onSubmit={handleSubmit(onSubmit)} 
+            onSubmit={handleSubmit(onSubmit)} 
             className={styles["content_form"]}>
             <input type="email" placeholder="Correo electrónico"
-            // {...register("email", {
-            //   required: {
-            //     value: true,
-            //     message: "Necesitas este campo"
-            //   },
-            //   pattern: {
-            //     value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
-            //     message: "El formato no es correcto"
-            //   }
-            // })}
+            {...register("email", {
+              required: {
+                value: true,
+                message: "Necesitas este campo"
+              },
+              pattern: {
+                value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
+                message: "El formato no es correcto"
+              }
+            })}
             />
-            {/* {errors.email && <span className="content_error">{errors.email.message}</span>} */}
+            {errors.email && <span className="content_error">{errors.email.message}</span>}
             <input type="password" placeholder="Contraseña"
-            // {...register("password", {
-            //   required: {
-            //     value: true,
-            //     message: "Necesitas este campo"
-            //   },
-            //   minLength: {
-            //     value: 6,
-            //     message: "La contraseña debe tener al menos 6 caracteres"
-            //   }
-            // })}
+            {...register("password", {
+              required: {
+                value: true,
+                message: "Necesitas este campo"
+              },
+              minLength: {
+                value: 6,
+                message: "La contraseña debe tener al menos 6 caracteres"
+              }
+            })}
             />
-            {/* {errors.password && <span className="content_error">{errors.password.message}</span>} */}
+            {errors.password && <span className="content_error">{errors.password.message}</span>}
 
             <Link to="/" className={styles.btn_ingresar_main}>
               <button type="submit" className={styles.btn_ingresar}>

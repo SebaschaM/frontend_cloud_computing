@@ -10,7 +10,7 @@
   height: auto;
   margin: 0 2%;
   margin-top: 2%;
-  background-color: #141415;
+  background-color: red;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
   padding-top: 20px;
@@ -40,19 +40,25 @@
 .datos_main {
   width: auto;
   height: auto;
-  margin: 0 2%;
+  margin: 0 3%;
   background-color: #141415;
   border-radius: 10px;
   padding: 20px;
-}
-.detalle_datos {
-  width: 100%;
+  margin-bottom: 40px;
   margin-top: 20px;
 }
-.content_form_datos {
-  width: 100%;
+.content_form_title{
+  margin-left: -20px;
+}
+.content_form_title p{
+  color: var(--color-secundario);
+  font-size: 18px;
 }
 
+.content_form_datos {
+  width: auto;
+  margin: 20px 50px 0 50px;
+}
 .content_detalledatos1 {
   display: flex;
   flex-direction: row;
@@ -68,12 +74,16 @@
 
 input {
   height: 40px;
-  margin: 10px;
+  margin: 10px 0;
 }
 
 .filas {
   width: 50%;
   margin-right: 3%;
+}
+.filas p{
+  margin-top: 10px;
+  color: var(--color-secundario);
 }
 
 .cerrar_btn {

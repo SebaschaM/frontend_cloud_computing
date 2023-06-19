@@ -1,4 +1,4 @@
-import Header from "../../components/Header";
+import Header from "../../components/Header_Logeado";
 import wine from "../../assets/ImgWine.png";
 import item1 from "../../assets/Category1.png";
 import product1 from "../../assets/Wine.png";
