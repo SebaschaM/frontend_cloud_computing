@@ -8,6 +8,7 @@ import { useForm } from "react-hook-form";
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+
 function Login() {
 
   const navigate = useNavigate();
@@ -21,9 +22,10 @@ function Login() {
       const response = await axios.post('http://localhost:3000/api/auth/login', data);
       console.log(response.data);
       if (response.data.success) {
-        navigate("/home");
+        // navigate("/home");
         console.log("SUCCES en el registro");
       } else {
+        setFormData('Usuario y contraseña incorrecta')
         console.log("Error en el registro");
       }
     } catch (error) {
@@ -46,40 +48,38 @@ function Login() {
             <p className={styles.description}>Bienvenido a nuestra página</p>
           </div>
           <form
-            onSubmit={handleSubmit(onSubmit)} 
+            onSubmit={handleSubmit(onSubmit)}
             className={styles["content_form"]}>
             <input type="email" placeholder="Correo electrónico"
-            {...register("email", {
-              required: {
-                value: true,
-                message: "Necesitas este campo"
-              },
-              pattern: {
-                value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
-                message: "El formato no es correcto"
-              }
-            })}
+              {...register("email", {
+                required: {
+                  value: true,
+                  message: "Necesitas este campo"
+                },
+                pattern: {
+                  value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
+                  message: "El formato no es correcto"
+                }
+              })}
             />
             {errors.email && <span className="content_error">{errors.email.message}</span>}
             <input type="password" placeholder="Contraseña"
-            {...register("password", {
-              required: {
-                value: true,
-                message: "Necesitas este campo"
-              },
-              minLength: {
-                value: 6,
-                message: "La contraseña debe tener al menos 6 caracteres"
-              }
-            })}
+              {...register("password", {
+                required: {
+                  value: true,
+                  message: "Necesitas este campo"
+                },
+                minLength: {
+                  value: 6,
+                  message: "La contraseña debe tener al menos 6 caracteres"
+                }
+              })}
             />
             {errors.password && <span className="content_error">{errors.password.message}</span>}
 
-            <Link to="/" className={styles.btn_ingresar_main}>
-              <button type="submit" className={styles.btn_ingresar}>
-                Ingresar
-              </button>
-            </Link>
+            <button type="submit" className={styles.btn_ingresar}>
+              Ingresar
+            </button>
           </form>
           <div className={styles["content_foot"]}>
             <p>¿Aún no tienes una cuenta?</p>

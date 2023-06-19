@@ -88,12 +88,9 @@
   background-color: #ffffff;
 }
 
-.btn_ingresar_main{
-  width: 50%;
-}
 
 .btn_ingresar {
-  width: 100%;
+  width: 50%;
   padding: 10px 0px;
   margin-top: 30px;
   border-radius: 12px;
@@ -175,4 +172,12 @@
   height: 1px;
   background-color: #bbbbbb;
   margin-bottom: 2%;
+}
+
+/*===============  Mensaje de error========================*/
+
+span{
+  color:red;
+  font-size: 13px;
+  width: 45%;
 }
