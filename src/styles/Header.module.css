@@ -83,25 +83,18 @@ a {
   outline: none;
   border: none;
 }
+
 .sucursal {
-  width: 20px;
-  height: 20px;
-  margin-left: -10px;
-  border-radius: 50px;
-  display: flex;
-  padding: 10px;
+  appearance: auto;
+  background-color: black;
+  border: none;
+}
+
+.sucursal:focus {
   outline: none;
   border: none;
-  cursor: pointer;
-  background-color: var(--color-base);
 }
-.sucursal:hover {
-  background-color: var(--color-seleccionar-header);
-}
-.sucursal option {
-  padding: 20px;
-  cursor: pointer;
-}
+
 .btn_carrito {
   width: 45px;
   height: 45px;
@@ -119,7 +112,7 @@ a {
   height: 100%;
   fill: var(--color-letra-home);
 }
-.btn_carrito_main{
+.btn_carrito_main {
   margin-right: 3%;
 }
 .btn_sesion {
@@ -142,7 +135,8 @@ a {
   justify-content: end;
   padding: 10px 20px;
   border-radius: 12px;
-}.content_userlogeado:hover {
+}
+.content_userlogeado:hover {
   background-color: var(--color-seleccionar-header);
   transform: scale(0.98);
 }

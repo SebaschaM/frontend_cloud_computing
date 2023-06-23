@@ -287,6 +287,7 @@ function Home() {
           <div className={styles.formulario}>
             <h2>Contáctanos</h2>
             <form className={styles.form}>
+              {/*}
               <label htmlFor="name">Nombres</label>
               <input type="text" name="name" id="name" />
 
@@ -305,6 +306,7 @@ function Home() {
               ></textarea>
 
               <input className={styles.btn} type="submit" value="Enviar" />
+              {*/}
             </form>
           </div>
           <div className={styles.her}>
