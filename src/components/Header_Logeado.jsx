@@ -20,9 +20,8 @@ function Header() {
     }
   };
 
-  handleBranchList();
-
   useEffect(() => {
+    handleBranchList();
     const fetchProducts = async () => {
       try {
         const productList = await getProductByBranch(selectedOption);
@@ -41,6 +40,7 @@ function Header() {
     const branchId = event.target.value;
     setSelectedOption(branchId);
   };
+
   return (
     <div className={styles.content_main}>
       <div className={styles.content_title_sucursal}>
@@ -75,14 +75,8 @@ function Header() {
             <select
               id="branchSelect"
               className={styles.sucursal}
-              value={selectedOption}
               onChange={handleChange}
             >
-              {selectedOption !== "" ? null : (
-                <option value="" disabled>
-                  Seleccionar sucursal
-                </option>
-              )}
               {branchList.map((branch) => (
                 <option
                   key={branch.id}
