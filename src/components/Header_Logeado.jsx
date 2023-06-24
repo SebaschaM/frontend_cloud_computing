@@ -2,12 +2,14 @@ import photo from "../assets/usuario.png";
 import styles from "../styles/Header.module.css";
 import { Link } from "react-router-dom";
 import useFetch from "../hooks/useFetch.JSX";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useLocalStorage } from "../hooks/useLocalStorage.jsx";
 
 function Header() {
-  const { getBranchList } = useFetch();
+  const { getBranchList, getProductByBranch } = useFetch();
   const [branchList, setBranchList] = useState([]);
-  const [selectedOption, setSelectedOption] = useState(""); // Agregar la variable de estado selectedOption
+  const [selectedOption, setSelectedOption] = useLocalStorage("branchId", ""); // Agregar la variable de estado selectedOption
+  //const [productList, setProductList] = useState([]);
 
   const handleBranchList = async () => {
     try {
@@ -17,10 +19,28 @@ function Header() {
       console.log(error);
     }
   };
-  const handleChange = (event) => {
-    setSelectedOption(event.target.value); // Actualizar el valor de selectedOption al realizar una selección
-  };
 
+  handleBranchList();
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const productList = await getProductByBranch(selectedOption);
+        console.log(productList);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    if (selectedOption) {
+      fetchProducts();
+    }
+  }, [selectedOption]);
+
+  const handleChange = (event) => {
+    const branchId = event.target.value;
+    setSelectedOption(branchId);
+  };
   return (
     <div className={styles.content_main}>
       <div className={styles.content_title_sucursal}>
@@ -53,6 +73,7 @@ function Header() {
           </div>
           <div className={styles.sucursal_div} onClick={handleBranchList}>
             <select
+              id="branchSelect"
               className={styles.sucursal}
               value={selectedOption}
               onChange={handleChange}
