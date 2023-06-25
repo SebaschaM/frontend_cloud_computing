@@ -1,10 +1,8 @@
 import Header from "../../components/Header_Logeado";
 import wine from "../../assets/ImgWine.png";
-import item1 from "../../assets/Category1.png";
 import product1 from "../../assets/Wine.png";
-import licorLogo from "../../assets/Licoreria-name.png";
 import styles from "../../styles/Home.module.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import Direccion from "../../assets/location-pin.png";
 import Tlf from "../../assets/phone-call.png";
@@ -14,10 +12,41 @@ import Horario from "../../assets/calendar.png";
 import Fb from "../../assets/facebook.png";
 import Ins from "../../assets/instagram.png";
 import Manager from "../../assets/manager.png";
+import useFetch from "../../hooks/useFetch.JSX";
+import { useLocalStorage } from "../../hooks/useLocalStorage.jsx";
 
 function Home() {
   const [showModalProduct, setShowModalProduct] = useState(false);
   const [count, setCount] = useState(1);
+  const { getCategoryList, getProductByBranch } = useFetch();
+  const [categoryList, setCategoryList] = useState([]);
+  const [selectedBranchId] = useLocalStorage("branchId", null);
+  const [productList, setProductList] = useState([]);
+
+  const handleCategoryList = async () => {
+    try {
+      const data = await getCategoryList();
+      setCategoryList(data);
+      //console.log(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handleProductListByBranch = async () => {
+    try {
+      const data = await getProductByBranch(selectedBranchId);
+      setProductList(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    handleCategoryList();
+    handleProductListByBranch();
+  }, []);
+
   return (
     <>
       <div className={styles.home}>
@@ -40,21 +69,14 @@ function Home() {
               <p className={styles.description_content}>Más vendidas</p>
             </div>
             <div className={styles.categories_list}>
-              <img
-                className={styles.category_img_item}
-                src={item1}
-                alt="Item"
-              />
-              <img
-                className={styles.category_img_item}
-                src={item1}
-                alt="Item"
-              />
-              <img
-                className={styles.category_img_item}
-                src={item1}
-                alt="Item"
-              />
+              {categoryList.slice(0, 3).map((category) => (
+                <img
+                  key={category.id}
+                  className={styles.category_img_item}
+                  src={category.url}
+                  alt={category.name}
+                />
+              ))}
             </div>
           </div>
           <div className={styles.home_product_content}>
@@ -63,134 +85,52 @@ function Home() {
               <p className={styles.description_content}>Más vendidos</p>
             </div>
             <div className={styles.product_list}>
-              {}
-              <div
-                className={styles.category_item_select}
-                onClick={() => setShowModalProduct(true)}
-              >
-                <div className={styles.item_product}>
-                  <img
-                    className={styles.product_img}
-                    src={product1}
-                    alt="product1"
-                  />
-                  <div className={styles.content_product_info}>
-                    <p className={styles.product_info_name}>
-                      Vino semiseco Viña d' LOS CampoS (BORGOÑA BLANCA)
-                    </p>
-                    <p className={styles.product_info_ml}>750 ML</p>
-                    <div className={styles.product_option}>
-                      <div className={styles.product_item_cost}>
-                        <p className={styles.product_cost_text}>Precio:</p>
-                        <p className={styles.product_cost_num}>S/ 20.00</p>
-                      </div>
-                      <div
-                        className={styles.btn_add}
-                        onClick={(e) => e.stopPropagation()}
-                      >
-                        <svg
-                          className={styles.svg_add}
-                          height="70%"
-                          viewBox="0 0 512 512"
-                          xmlns="http://www.w3.org/2000/svg"
+              {productList.slice(0, 3).map((product) => (
+                <div
+                  className={styles.category_item_select}
+                  onClick={() => setShowModalProduct(true)}
+                  key={product.id}
+                >
+                  <div className={styles.item_product}>
+                    <img
+                      className={styles.product_img}
+                      src={product.url}
+                      alt={product.name}
+                    />
+                    <div className={styles.content_product_info}>
+                      <p className={styles.product_info_name}>{product.name}</p>
+                      <p className={styles.product_info_ml}>
+                        {product.description}
+                      </p>
+                      <div className={styles.product_option}>
+                        <div className={styles.product_item_cost}>
+                          <p className={styles.product_cost_text}>Precio:</p>
+                          <p className={styles.product_cost_num}>
+                            S/ {product.price}
+                          </p>
+                        </div>
+                        <div
+                          className={styles.btn_add}
+                          onClick={(e) => e.stopPropagation()}
                         >
-                          <path
-                            d="M417.4 224H288V94.6c0-16.9-14.3-30.6-32-30.6s-32 13.7-32 30.6V224H94.6C77.7 224 64 238.3 64 256s13.7 32 30.6 32H224v129.4c0 16.9 14.3 30.6 32 30.6s32-13.7 32-30.6V288h129.4c16.9 0 30.6-14.3 30.6-32s-13.7-32-30.6-32z"
-                            fill="#ffffff"
-                            className={styles["fill-000000"]}
-                          ></path>
-                        </svg>
+                          <svg
+                            className={styles.svg_add}
+                            height="70%"
+                            viewBox="0 0 512 512"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M417.4 224H288V94.6c0-16.9-14.3-30.6-32-30.6s-32 13.7-32 30.6V224H94.6C77.7 224 64 238.3 64 256s13.7 32 30.6 32H224v129.4c0 16.9 14.3 30.6 32 30.6s32-13.7 32-30.6V288h129.4c16.9 0 30.6-14.3 30.6-32s-13.7-32-30.6-32z"
+                              fill="#ffffff"
+                              className={styles["fill-000000"]}
+                            ></path>
+                          </svg>
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
-              </div>
-              {}
-              <div
-                className={styles.category_item_select}
-                onClick={() => setShowModalProduct(true)}
-              >
-                <div className={styles.item_product}>
-                  <img
-                    className={styles.product_img}
-                    src={product1}
-                    alt="product1"
-                  />
-                  <div className={styles.content_product_info}>
-                    <p className={styles.product_info_name}>
-                      Vino semiseco Viña d' LOS CampoS (BORGOÑA BLANCA)
-                    </p>
-                    <p className={styles.product_info_ml}>750 ML</p>
-                    <div className={styles.product_option}>
-                      <div className={styles.product_item_cost}>
-                        <p className={styles.product_cost_text}>Precio:</p>
-                        <p className={styles.product_cost_num}>S/ 20.00</p>
-                      </div>
-                      <div
-                        className={styles.btn_add}
-                        onClick={(e) => e.stopPropagation()}
-                      >
-                        <svg
-                          className={styles.svg_add}
-                          height="70%"
-                          viewBox="0 0 512 512"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path
-                            d="M417.4 224H288V94.6c0-16.9-14.3-30.6-32-30.6s-32 13.7-32 30.6V224H94.6C77.7 224 64 238.3 64 256s13.7 32 30.6 32H224v129.4c0 16.9 14.3 30.6 32 30.6s32-13.7 32-30.6V288h129.4c16.9 0 30.6-14.3 30.6-32s-13.7-32-30.6-32z"
-                            fill="#ffffff"
-                            className={styles["fill-000000"]}
-                          ></path>
-                        </svg>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              {}
-
-              <div
-                className={styles.category_item_select}
-                onClick={() => setShowModalProduct(true)}
-              >
-                <div className={styles.item_product}>
-                  <img
-                    className={styles.product_img}
-                    src={product1}
-                    alt="product1"
-                  />
-                  <div className={styles.content_product_info}>
-                    <p className={styles.product_info_name}>
-                      Vino semiseco Viña d' LOS CampoS (BORGOÑA BLANCA)
-                    </p>
-                    <p className={styles.product_info_ml}>750 ML</p>
-                    <div className={styles.product_option}>
-                      <div className={styles.product_item_cost}>
-                        <p className={styles.product_cost_text}>Precio:</p>
-                        <p className={styles.product_cost_num}>S/ 20.00</p>
-                      </div>
-                      <div
-                        className={styles.btn_add}
-                        onClick={(e) => e.stopPropagation()}
-                      >
-                        <svg
-                          className={styles.svg_add}
-                          height="70%"
-                          viewBox="0 0 512 512"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path
-                            d="M417.4 224H288V94.6c0-16.9-14.3-30.6-32-30.6s-32 13.7-32 30.6V224H94.6C77.7 224 64 238.3 64 256s13.7 32 30.6 32H224v129.4c0 16.9 14.3 30.6 32 30.6s32-13.7 32-30.6V288h129.4c16.9 0 30.6-14.3 30.6-32s-13.7-32-30.6-32z"
-                            fill="#ffffff"
-                            className={styles["fill-000000"]}
-                          ></path>
-                        </svg>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              {}
+              ))}
             </div>
             <button className={styles.btn_product}>Ver productos</button>
           </div>

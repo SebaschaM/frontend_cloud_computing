@@ -4,12 +4,15 @@ import { Link } from "react-router-dom";
 import useFetch from "../hooks/useFetch.JSX";
 import { useState, useEffect } from "react";
 import { useLocalStorage } from "../hooks/useLocalStorage.jsx";
+import { useLocation } from "react-router-dom";
 
 function Header() {
-  const { getBranchList, getProductByBranch } = useFetch();
+  const { getBranchList, getProductByBranch, getCategoryList } = useFetch();
+  const location = useLocation();
+
   const [branchList, setBranchList] = useState([]);
-  const [selectedOption, setSelectedOption] = useLocalStorage("branchId", ""); // Agregar la variable de estado selectedOption
-  //const [productList, setProductList] = useState([]);
+  const [selectedOption, setSelectedOption] = useLocalStorage("branchId", null); // Agregar la variable de estado selectedOption
+  //const currentPage = location.pathname;
 
   const handleBranchList = async () => {
     try {
@@ -20,26 +23,32 @@ function Header() {
     }
   };
 
-  useEffect(() => {
-    handleBranchList();
-    const fetchProducts = async () => {
-      try {
-        const productList = await getProductByBranch(selectedOption);
-        console.log(productList);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-
-    if (selectedOption) {
-      fetchProducts();
-    }
-  }, [selectedOption]);
-
   const handleChange = (event) => {
-    const branchId = event.target.value;
+    const branchId = parseInt(event.target.value);
     setSelectedOption(branchId);
   };
+  /*
+  const handleProductList = async () => {
+    try {
+      const productList = await getProductByBranch(selectedOption);
+      console.log(productList);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  
+  const handleCategoryList = async () => {
+    try {
+      const data = await getCategoryList(selectedOption);
+      console.log(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+*/
+  useEffect(() => {
+    handleBranchList();
+  }, []);
 
   return (
     <div className={styles.content_main}>
@@ -74,6 +83,7 @@ function Header() {
           <div className={styles.sucursal_div} onClick={handleBranchList}>
             <select
               id="branchSelect"
+              value={selectedOption}
               className={styles.sucursal}
               onChange={handleChange}
             >
@@ -83,7 +93,7 @@ function Header() {
                   value={branch.id}
                   className={styles.sucursal_option}
                 >
-                  {branch.name}
+                  {branch.district}
                 </option>
               ))}
             </select>
