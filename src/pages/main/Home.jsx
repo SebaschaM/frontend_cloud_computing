@@ -18,10 +18,18 @@ import { useLocalStorage } from "../../hooks/useLocalStorage.jsx";
 function Home() {
   const [showModalProduct, setShowModalProduct] = useState(false);
   const [count, setCount] = useState(1);
-  const { getCategoryList, getProductByBranch } = useFetch();
+  const { getCategoryList, getProductByBranch, getDetailProduct } = useFetch();
   const [categoryList, setCategoryList] = useState([]);
-  const [selectedBranchId] = useLocalStorage("branchId", null);
+  const [selectedBranchId, setSelectedBranchId] = useLocalStorage(
+    "branchId",
+    null
+  );
   const [productList, setProductList] = useState([]);
+
+  const handleSelectChange = (branchId) => {
+    setSelectedBranchId(branchId);
+    handleProductListByBranch(branchId);
+  };
 
   const handleCategoryList = async () => {
     try {
@@ -36,7 +44,9 @@ function Home() {
   const handleProductListByBranch = async () => {
     try {
       const data = await getProductByBranch(selectedBranchId);
+      console.log(selectedBranchId);
       setProductList(data);
+      console.log(data);
     } catch (error) {
       console.log(error);
     }
@@ -50,7 +60,7 @@ function Home() {
   return (
     <>
       <div className={styles.home}>
-        <Header />
+        <Header handleSelectChange={handleSelectChange} />
         <div className={styles.home_main}>
           <div className={styles.content_description}>
             <p className={styles.home_title}>

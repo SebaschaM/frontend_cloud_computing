@@ -19,7 +19,6 @@ const useFetch = () => {
     }
   };
 
-  //PRODUCTS
   const getProductByBranch = async (branchId) => {
     const response = await fetch(
       `http://localhost:3000/api/product/${branchId}`,
@@ -57,7 +56,6 @@ const useFetch = () => {
     }
   };
 
-  //FALTA
   const getCategoryList = async () => {
     const response = await fetch(
       "http://localhost:3000/api/product/findAll/category",
