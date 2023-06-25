@@ -316,7 +316,10 @@ function Home() {
       {showModalProduct && productData && (
         <div
           className={styles.modal}
-          onClick={() => setShowModalProduct(false)}
+          onClick={() => {
+            setShowModalProduct(false);
+            setCount(1);
+          }}
         >
           <div
             className={styles.modal_content}

@@ -73,7 +73,7 @@ const useFetch = () => {
       throw new Error("Error al obtener la lista de categorias");
     }
   };
-
+  /*
   const getProductByCategoryByBranch = async (categoryId, branchId) => {
     const response = await fetch(
       `http://localhost:3000/api/product/find/category/${categoryId}?idBranch=${branchId}`,
@@ -91,13 +91,13 @@ const useFetch = () => {
       throw new Error("Error al obtener la lista de productos");
     }
   };
-
+*/
   return {
     getBranchList,
     getProductByBranch,
     getDetailProduct,
     getCategoryList,
-    getProductByCategoryByBranch,
+    //getProductByCategoryByBranch,
   };
 };
 
