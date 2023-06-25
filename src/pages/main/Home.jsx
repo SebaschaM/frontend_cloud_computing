@@ -1,6 +1,5 @@
 import Header from "../../components/Header_Logeado";
 import wine from "../../assets/ImgWine.png";
-import product1 from "../../assets/Wine.png";
 import styles from "../../styles/Home.module.css";
 import { useState, useEffect, useContext } from "react";
 import { StoreContext } from "../../context/StoreContext";
@@ -14,17 +13,15 @@ import Fb from "../../assets/facebook.png";
 import Ins from "../../assets/instagram.png";
 import Manager from "../../assets/manager.png";
 import useFetch from "../../hooks/useFetch.JSX";
-import { useLocalStorage } from "../../hooks/useLocalStorage.jsx";
 
 function Home() {
   const [showModalProduct, setShowModalProduct] = useState(false);
   const [count, setCount] = useState(1);
   const { getCategoryList, getProductByBranch, getDetailProduct } = useFetch();
   const [categoryList, setCategoryList] = useState([]);
-  //const [selectedBranchId, setSelectedBranchId] = useLocalStorage("branchId",null);
   const [productList, setProductList] = useState([]);
   const [productData, setProductData] = useState(null);
-  const { state, dispatch } = useContext(StoreContext);
+  const { state } = useContext(StoreContext);
 
   const handleCategoryList = async () => {
     try {

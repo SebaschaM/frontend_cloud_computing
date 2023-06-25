@@ -1,13 +1,43 @@
 import Header from "../../components/Header_Logeado";
 import wine from "../../assets/ImgWine.png";
-import item1 from "../../assets/Category1.png";
 import product1 from "../../assets/Wine.png";
-import { useState } from "react";
+import { useEffect, useState, useContext } from "react";
+import useFetch from "../../hooks/useFetch.JSX";
 import styles from "../../styles/Product.module.css";
+import { StoreContext } from "../../context/StoreContext.jsx";
 
 function Product() {
   const [showModalProduct, setShowModalProduct] = useState(false);
+  const [categoryList, setCategoryList] = useState([]);
   const [count, setCount] = useState(1);
+  const { getProductByCategoryByBranch, getCategoryList } = useFetch();
+  const { state } = useContext(StoreContext);
+
+  const handleCategoryList = async () => {
+    try {
+      const data = await getCategoryList();
+      setCategoryList(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handleProductByCategoryByBranch = async () => {
+    try {
+      const data = await getProductByCategoryByBranch(
+        1,
+        state.selectedBranchId
+      );
+      console.log(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    handleCategoryList();
+    handleProductByCategoryByBranch();
+  }, [state.selectedBranchId]);
 
   return (
     <>
@@ -28,60 +58,70 @@ function Product() {
           <div className={styles.category_main}>
             <img className={styles.img_wine} src={wine} alt="Wine" />
             <div className={styles.category_container}>
-              <img className={styles.category_item} src={item1} alt="Item" />
-              <img className={styles.category_item} src={item1} alt="Item" />
-              <img className={styles.category_item} src={item1} alt="Item" />
+              {categoryList.slice(0, 3).map((category) => (
+                <img
+                  key={category.id}
+                  className={styles.category_item}
+                  src={category.url}
+                  alt={category.name}
+                />
+              ))}
             </div>
           </div>
           <div className={styles.category_list}>
-            <div className={styles.category_item_detail}>
-              <div className={styles.category_item_info}>
-                <p className={styles.category_item_tittle}>Categorías</p>
-                <p className={styles.category_item_description}>
-                  VINOS SEMISECOS (viña d´los campos)
-                </p>
-              </div>
-              <div className={styles.category_product_list}>
-                <div
-                  className={styles.category_item_select}
-                  onClick={() => setShowModalProduct(true)}
-                >
-                  <div className={styles.category_item_product}>
-                    <img
-                      className={styles.product_img}
-                      src={product1}
-                      alt="product1"
-                    />
-                    <div className={styles.item_product_info}>
-                      <p className={styles.product_name}>
-                        Vino semiseco Viña d' LOS CampoS (BORGOÑA BLANCA)
-                      </p>
-                      <p className={styles.product_ml}>750 ML</p>
-                      <div className={styles.item_product_option}>
-                        <div className={styles.product_cost}>
-                          <p className={styles.price_text}>Precio</p>
-                          <p className={styles.product_price}>S/ 20.00</p>
-                        </div>
-                        <div className={styles.btn_add}>
-                          <svg
-                            className={styles.svg_add}
-                            height="70%"
-                            viewBox="0 0 512 512"
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
-                            <path
-                              d="M417.4 224H288V94.6c0-16.9-14.3-30.6-32-30.6s-32 13.7-32 30.6V224H94.6C77.7 224 64 238.3 64 256s13.7 32 30.6 32H224v129.4c0 16.9 14.3 30.6 32 30.6s32-13.7 32-30.6V288h129.4c16.9 0 30.6-14.3 30.6-32s-13.7-32-30.6-32z"
-                              fill="#ffffff"
-                              className="fill-000000"
-                            ></path>
-                          </svg>
+            {categoryList.map((category) => (
+              <div className={styles.category_item_detail} key={category.id}>
+                <div className={styles.category_item_info}>
+                  <p className={styles.category_item_tittle}>Categorías</p>
+                  <p className={styles.category_item_description}>
+                    {category.name}
+                  </p>
+                </div>
+                {}
+                <div className={styles.category_product_list}>
+                  <div
+                    className={styles.category_item_select}
+                    onClick={() => setShowModalProduct(true)}
+                  >
+                    <div className={styles.category_item_product}>
+                      <img
+                        className={styles.product_img}
+                        key={category.id}
+                        src={product1}
+                        alt="product1"
+                      />
+                      <div className={styles.item_product_info}>
+                        <p className={styles.product_name}>
+                          Vino semiseco Viña d' LOS CampoS (BORGOÑA BLANCA)
+                        </p>
+                        <p className={styles.product_ml}>750 ML</p>
+                        <div className={styles.item_product_option}>
+                          <div className={styles.product_cost}>
+                            <p className={styles.price_text}>Precio</p>
+                            <p className={styles.product_price}>S/ 20.00</p>
+                          </div>
+                          <div className={styles.btn_add}>
+                            <svg
+                              className={styles.svg_add}
+                              height="70%"
+                              viewBox="0 0 512 512"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <path
+                                d="M417.4 224H288V94.6c0-16.9-14.3-30.6-32-30.6s-32 13.7-32 30.6V224H94.6C77.7 224 64 238.3 64 256s13.7 32 30.6 32H224v129.4c0 16.9 14.3 30.6 32 30.6s32-13.7 32-30.6V288h129.4c16.9 0 30.6-14.3 30.6-32s-13.7-32-30.6-32z"
+                                fill="#ffffff"
+                                className="fill-000000"
+                              ></path>
+                            </svg>
+                          </div>
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
+                {}
               </div>
-            </div>
+            ))}
           </div>
         </div>
         <div className={styles.product_footer}>
@@ -116,6 +156,7 @@ function Product() {
             </div>
             <div className={styles.modal_detail_product}>
               <img
+                key={1}
                 className={styles.modal_product_img}
                 src={product1}
                 alt="Wine"

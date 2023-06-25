@@ -8,7 +8,7 @@ import { StoreContext } from "../context/StoreContext.jsx";
 
 function Header() {
   const { getBranchList } = useFetch();
-  const { state, dispatch } = useContext(StoreContext);
+  const { dispatch } = useContext(StoreContext);
   const [branchList, setBranchList] = useState([]);
   const [selectedOption, setSelectedOption] = useLocalStorage("branchId", ""); // Agregar la variable de estado selectedOption
 

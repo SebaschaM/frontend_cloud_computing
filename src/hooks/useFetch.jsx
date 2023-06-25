@@ -38,7 +38,6 @@ const useFetch = () => {
     }
   };
 
-  //FALTA
   const getDetailProduct = async (productId) => {
     const response = await fetch(
       `http://localhost:3000/api/product/find/${productId}`,
@@ -75,11 +74,30 @@ const useFetch = () => {
     }
   };
 
+  const getProductByCategoryByBranch = async (categoryId, branchId) => {
+    const response = await fetch(
+      `http://localhost:3000/api/product/find/category/${categoryId}?idBranch=${branchId}`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    if (response.ok) {
+      const data = await response.json();
+      return data;
+    } else {
+      throw new Error("Error al obtener la lista de productos");
+    }
+  };
+
   return {
     getBranchList,
     getProductByBranch,
     getDetailProduct,
     getCategoryList,
+    getProductByCategoryByBranch,
   };
 };
 
