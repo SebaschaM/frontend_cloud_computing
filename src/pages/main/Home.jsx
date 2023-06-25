@@ -2,7 +2,8 @@ import Header from "../../components/Header_Logeado";
 import wine from "../../assets/ImgWine.png";
 import product1 from "../../assets/Wine.png";
 import styles from "../../styles/Home.module.css";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+import { StoreContext } from "../../context/StoreContext";
 
 import Direccion from "../../assets/location-pin.png";
 import Tlf from "../../assets/phone-call.png";
@@ -20,22 +21,15 @@ function Home() {
   const [count, setCount] = useState(1);
   const { getCategoryList, getProductByBranch, getDetailProduct } = useFetch();
   const [categoryList, setCategoryList] = useState([]);
-  const [selectedBranchId, setSelectedBranchId] = useLocalStorage(
-    "branchId",
-    null
-  );
+  //const [selectedBranchId, setSelectedBranchId] = useLocalStorage("branchId",null);
   const [productList, setProductList] = useState([]);
-
-  const handleSelectChange = (branchId) => {
-    setSelectedBranchId(branchId);
-    handleProductListByBranch(branchId);
-  };
+  const [productData, setProductData] = useState(null);
+  const { state, dispatch } = useContext(StoreContext);
 
   const handleCategoryList = async () => {
     try {
       const data = await getCategoryList();
       setCategoryList(data);
-      //console.log(data);
     } catch (error) {
       console.log(error);
     }
@@ -43,10 +37,18 @@ function Home() {
 
   const handleProductListByBranch = async () => {
     try {
-      const data = await getProductByBranch(selectedBranchId);
-      console.log(selectedBranchId);
+      const data = await getProductByBranch(state.selectedBranchId);
       setProductList(data);
-      console.log(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handleDetailProduct = async (productId) => {
+    try {
+      const data = await getDetailProduct(productId);
+      setProductData(data[0]);
+      console.log(data[0]);
     } catch (error) {
       console.log(error);
     }
@@ -54,13 +56,16 @@ function Home() {
 
   useEffect(() => {
     handleCategoryList();
-    handleProductListByBranch();
   }, []);
+
+  useEffect(() => {
+    handleProductListByBranch();
+  }, [state.selectedBranchId]);
 
   return (
     <>
       <div className={styles.home}>
-        <Header handleSelectChange={handleSelectChange} />
+        <Header />
         <div className={styles.home_main}>
           <div className={styles.content_description}>
             <p className={styles.home_title}>
@@ -98,7 +103,10 @@ function Home() {
               {productList.slice(0, 3).map((product) => (
                 <div
                   className={styles.category_item_select}
-                  onClick={() => setShowModalProduct(true)}
+                  onClick={() => {
+                    setShowModalProduct(true);
+                    handleDetailProduct(product.id);
+                  }}
                   key={product.id}
                 >
                   <div className={styles.item_product}>
@@ -308,7 +316,7 @@ function Home() {
         </footer>
       </div>
       {/* Modal */}
-      {showModalProduct && (
+      {showModalProduct && productData && (
         <div
           className={styles.modal}
           onClick={() => setShowModalProduct(false)}
@@ -319,9 +327,7 @@ function Home() {
           >
             <div className={styles.modal_head}>
               <p className={styles.modal_description_title}>Detalle Producto</p>
-              <p className={styles.modal_description_id}>
-                Código de Producto N° 1
-              </p>
+              <p className={styles.modal_description_id}>{productData.id}</p>
               <p className={styles.modal_description}>
                 Agrega productos al carrito para poder comprarlos y selecciona
                 la cantidad deseada.
@@ -330,13 +336,13 @@ function Home() {
             <div className={styles.modal_detail_product}>
               <img
                 className={styles.modal_product_img}
-                src={product1}
-                alt="Wine"
+                src={productData.url}
+                alt={productData.name}
               />
               <div className={styles.modal_product_container}>
                 <div className={styles.modal_product_info}>
                   <p className={styles.modal_product_name}>
-                    Vino semiseco (QUEIROLO)
+                    {productData.name}
                   </p>
                   <table>
                     <thead>
@@ -351,9 +357,11 @@ function Home() {
                     </thead>
                     <tbody>
                       <tr>
-                        <td className={styles.modal_description_tbody}>75mL</td>
                         <td className={styles.modal_description_tbody}>
-                          S/ 20.00
+                          {productData.description}
+                        </td>
+                        <td className={styles.modal_description_tbody}>
+                          S/ {productData.price}
                         </td>
                       </tr>
                     </tbody>
@@ -407,7 +415,9 @@ function Home() {
               </div>
             </div>
             <div className={styles.modal_cart_option}>
-              <p className={styles.product_price_cart}>S/ {count * 20}.00</p>
+              <p className={styles.product_price_cart}>
+                S/ {count * productData.price}.00
+              </p>
               <button className={styles.btn_event_add}>
                 <div className={styles.btn_cart}>
                   <p className={styles.txt_add_cart}>Agregar al carrito</p>

@@ -2,12 +2,13 @@ import photo from "../assets/usuario.png";
 import styles from "../styles/Header.module.css";
 import { Link } from "react-router-dom";
 import useFetch from "../hooks/useFetch.JSX";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useLocalStorage } from "../hooks/useLocalStorage.jsx";
+import { StoreContext } from "../context/StoreContext.jsx";
 
-function Header({ handleSelectChange }) {
+function Header() {
   const { getBranchList } = useFetch();
-
+  const { state, dispatch } = useContext(StoreContext);
   const [branchList, setBranchList] = useState([]);
   const [selectedOption, setSelectedOption] = useLocalStorage("branchId", ""); // Agregar la variable de estado selectedOption
 
@@ -22,12 +23,11 @@ function Header({ handleSelectChange }) {
 
   const handleChange = (event) => {
     const branchId = parseInt(event.target.value);
+    dispatch({ type: "SET_BRANCH_ID", payload: branchId });
     setSelectedOption(branchId);
-    handleSelectChange(branchId);
   };
 
   useEffect(() => {
-    handleSelectChange(selectedOption);
     handleBranchList();
   }, [selectedOption]);
 
