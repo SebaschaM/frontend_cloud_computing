@@ -2,36 +2,43 @@ import Flecha from "../../assets/Atras.png";
 import Fondo from "../../assets/Fondo.png";
 import styles from "../../styles/Login.module.css";
 import { Link } from 'react-router-dom';
-
 import axios from 'axios';
 import { useForm } from "react-hook-form";
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from "../../hooks/useAuth";
 
 
 function Login() {
-
+  const [message, setMessage] = useState('')
   const navigate = useNavigate();
   const [formData, setFormData] = useState({});
+  const { Login } = useAuth();
   const { register, handleSubmit, formState: { errors } } = useForm();
 
   const onSubmit = async data => {
     setFormData(data);
-
-    try {
-      const response = await axios.post('http://localhost:3000/api/auth/login', data);
-      console.log(response.data);
-      if (response.data.success) {
-        // navigate("/home");
-        console.log("SUCCES en el registro");
-      } else {
-        setFormData('Usuario y contraseña incorrecta')
-        console.log("Error en el registro");
-      }
-    } catch (error) {
-      console.log(error.response.data);
-      console.log("Error ERROR en el registro");
+    const login = await Login(data.email, data.password)
+    console.log(login)
+    if (login.token) {
+      return navigate("/home");
     }
+    setMessage(login.message)
+
+    // try {
+    //   const response = await axios.post('http://localhost:3000/api/auth/login', data);
+    //   console.log(response.data);
+    //   if (response.data.success) {
+    //     // navigate("/home");
+    //     console.log("SUCCES en el registro");
+    //   } else {
+    //     setFormData('Usuario y contraseña incorrecta')
+    //     console.log("Error en el registro");
+    //   }
+    // } catch (error) {
+    //   console.log(error.response.data);
+    //   console.log("Error ERROR en el registro");
+    // }
   };
 
   return (
@@ -80,6 +87,8 @@ function Login() {
             <button type="submit" className={styles.btn_ingresar}>
               Ingresar
             </button>
+            {/* mostrar mensaje */}
+            {/* {message && <p className={styles['mensaje']}>{message}</p>} */}
           </form>
           <div className={styles["content_foot"]}>
             <p>¿Aún no tienes una cuenta?</p>
