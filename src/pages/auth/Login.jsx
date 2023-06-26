@@ -21,24 +21,9 @@ function Login() {
     const login = await Login(data.email, data.password)
     console.log(login)
     if (login.token) {
-      return navigate("/home");
+      return navigate("/");
     }
     setMessage(login.message)
-
-    // try {
-    //   const response = await axios.post('http://localhost:3000/api/auth/login', data);
-    //   console.log(response.data);
-    //   if (response.data.success) {
-    //     // navigate("/home");
-    //     console.log("SUCCES en el registro");
-    //   } else {
-    //     setFormData('Usuario y contraseña incorrecta')
-    //     console.log("Error en el registro");
-    //   }
-    // } catch (error) {
-    //   console.log(error.response.data);
-    //   console.log("Error ERROR en el registro");
-    // }
   };
 
   return (
@@ -69,7 +54,7 @@ function Login() {
                 }
               })}
             />
-            {errors.email && <span className="content_error">{errors.email.message}</span>}
+            {errors.email && <span>{errors.email.message}</span>}
             <input type="password" placeholder="Contraseña"
               {...register("password", {
                 required: {
@@ -82,13 +67,13 @@ function Login() {
                 }
               })}
             />
-            {errors.password && <span className="content_error">{errors.password.message}</span>}
+            {errors.password && <span>{errors.password.message}</span>}
 
             <button type="submit" className={styles.btn_ingresar}>
               Ingresar
             </button>
             {/* mostrar mensaje */}
-            {/* {message && <p className={styles['mensaje']}>{message}</p>} */}
+            {message && <span>{message}</span>}
           </form>
           <div className={styles["content_foot"]}>
             <p>¿Aún no tienes una cuenta?</p>

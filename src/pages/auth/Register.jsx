@@ -18,13 +18,12 @@ function Register() {
 
   const onSubmit = async data => {
     setFormData(data);
-    console.log(data)
     const register = await Register(data.fullname, data.email, data.password, data.phone)
-    console.log(register)
-    if (register.id) {
+    if (register.fullname) {
       setMessage('Registro exitoso')
       setTimeout(() => { return navigate("/login");}, 2000)
-      
+    }else{
+      setMessage(register.message)
     }
   };
 
@@ -57,7 +56,7 @@ function Register() {
             </button>
 
             {/* mostrar mensaje */}
-            {message && <p className={styles['mensaje']}>{message}</p>}
+            {message && <span>{message}</span>}
           </form>
           <div className={styles.content_foot}>
             <p>¿Ya tiene una cuenta?</p>
