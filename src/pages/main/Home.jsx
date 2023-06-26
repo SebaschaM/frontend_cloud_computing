@@ -234,7 +234,7 @@ function Home() {
             <div className={styles.general}>
               <div className={styles.contenido}>
                 <img className={styles.mood} src={Direccion} alt="" />
-                <h3>Dirección</h3>
+                <h4>Dirección</h4>
               </div>
               <div className={styles.tex}>
                 <p> D2 Lote 80 - Calle Agru Santa Cruzp</p>
@@ -246,7 +246,7 @@ function Home() {
             <div className={styles.general}>
               <div className={styles.contenido}>
                 <img className={styles.mood} src={Tlf} alt="" />
-                <h3>Teléfonos</h3>
+                <h4>Teléfonos</h4>
               </div>
               <div className={styles.tex}>
                 <p>+51 123456789</p>
@@ -260,7 +260,7 @@ function Home() {
             <div className={styles.general}>
               <div className={styles.contenido}>
                 <img className={styles.mood} src={Email} alt="" />
-                <h3>Correo Electrónico</h3>
+                <h4>Correo Electrónico</h4>
               </div>
               <div className={styles.tex}>
                 <p>licorerialeon2022@gmail.com</p>
@@ -272,7 +272,7 @@ function Home() {
             <div className={styles.general2}>
               <div className={styles.contenido}>
                 <img className={styles.mood} src={Horario} alt="" />
-                <h3>Horario de Atención</h3>
+                <h4>Horario de Atención</h4>
               </div>
               <div className={styles.tex}>
                 <p>Lunes - Sábado:</p>
@@ -283,7 +283,7 @@ function Home() {
             <div className={styles.general3}>
               <div className={styles.contenido}>
                 <img className={styles.mood} src={Busqueda} alt="" />
-                <h3>Siguenos en: </h3>
+                <h4>Siguenos en: </h4>
               </div>
 
               <div className={styles.redes}>
@@ -305,18 +305,18 @@ function Home() {
           <div className={styles.formulario}>
             <h2>Contáctanos</h2>
             <form className={styles.form}>
-              {/*}
-              <label htmlFor="name">Nombres</label>
-              <input type="text" name="name" id="name" />
+              <label className={styles.label_home} htmlFor="name">Nombres</label>
+              <input className={styles.input_home} type="text" name="name" id="name" />
 
-              <label htmlFor="email">Email</label>
-              <input type="email" name="email" id="email" />
+              <label className={styles.label_home} htmlFor="email">Email</label>
+              <input className={styles.input_home} type="email" name="email" id="email" />
 
-              <label htmlFor="number">Teléfono</label>
-              <input type="number" name="" id="" />
+              <label className={styles.label_home} htmlFor="number">Teléfono</label>
+              <input className={styles.input_home} type="number" name="" id="" />
 
-              <label htmlFor="coments">Mensaje</label>
+              <label className={styles.label_home} htmlFor="coments">Mensaje</label>
               <textarea
+               className={styles.input_home}
                 name="coments"
                 id="coments"
                 cols="30"
@@ -324,7 +324,6 @@ function Home() {
               ></textarea>
 
               <input className={styles.btn} type="submit" value="Enviar" />
-              {*/}
             </form>
           </div>
           <div className={styles.her}>
@@ -344,7 +343,7 @@ function Home() {
         <footer className={styles.footer}>
           <div className={styles.div_1}>
             <div className={styles.texto_fo}>
-              <p>Local</p>
+              <p>Local:</p>
               <h3>
                 Licorería <br></br>"León"
               </h3>
@@ -356,10 +355,10 @@ function Home() {
                   Contáctanos
                 </a>
                 <a href="#" className="">
-                  categoría
+                  Sobre Nosotros
                 </a>
                 <a href="#" className="">
-                  Sobre Nosotros
+                  categoría
                 </a>
               </div>
 

@@ -36,18 +36,30 @@ function Perfil_Actualizar() {
             <div className={styles.content_detalledatos1}>
               <div className={styles.filas}>
                 <p>Nombres y Apellidos</p>
-                <input type="text" />
+                <input
+                  className={styles.input_perfil}
+                  type="text"
+                  required="true"
+                />
               </div>
               <div className={styles.filas}>
                 <p>Teléfono</p>
-                <input type="text"/>
+                <input
+                  className={styles.input_perfil}
+                  type="number"
+                  required="true"
+                />
               </div>
             </div>
 
             <div className={styles.content_detalledatos2}>
               <div className={styles.filas}>
                 <p>Correo electrónico</p>
-                <input type="email" />
+                <input
+                  className={styles.input_perfil}
+                  type="email"
+                  required="true"
+                />
               </div>
 
               {/* <div className={styles.filas}>
@@ -57,14 +69,12 @@ function Perfil_Actualizar() {
             </div>
 
             <div className={styles.cerrar_btn}>
-              <Link to="/perfil" >
-                <button className={stylesPedido.Cancelar}>
-                  Actualizar Datos
-                  <span className={stylesPedido.icon}>
-                    <img src={Next} />
-                  </span>
-                </button>
-              </Link>
+              <button className={stylesPedido.Cancelar} type="submit">
+                Actualizar Datos
+                <span className={stylesPedido.icon}>
+                  <img src={Next} />
+                </span>
+              </button>
             </div>
           </form>
         </div>

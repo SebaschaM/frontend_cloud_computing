@@ -9,7 +9,7 @@ import { StoreContext } from "../../context/StoreContext";
 
 
 function Perfil() {
-  const {state} = useContext (StoreContext)
+  const { state } = useContext(StoreContext)
   const { getProfile } = useFetch();
   const [profile, setProfile] = useState([]);
   const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImZyYW5rQGdtYWlsLmNvbSIsImlkIjozLCJpYXQiOjE2ODc3NDUxMDF9.92ku8Mv7NmIl_QVab7-g7S4VTcBlrK-gBzbL488u--Q";
@@ -27,7 +27,7 @@ function Perfil() {
 
   return (
     <>
-    
+
       <Header />
       <div className={stylesPedido.content_main_pedido_logeado}>
         <div className={stylesPedido.content_login_pedido_logeado}>
@@ -57,12 +57,21 @@ function Perfil() {
             <div className={styles.content_detalledatos1}>
               <div className={styles.filas}>
                 <p>Nombres y Apellidos</p>
-                <input type="text" readOnly defaultValue={profile.fullname}/>
+                <input
+                  className={styles.input_perfil}
+                  type="text"
+                  readOnly
+                  defaultValue={profile.fullname}
+                />
               </div>
               <div className={styles.filas}>
                 <p>Teléfono</p>
                 <input
-                  type="text" readOnly defaultValue={profile.phone}/>
+                  className={styles.input_perfil}
+                  type="text"
+                  readOnly
+                  defaultValue={profile.phone}
+                />
               </div>
             </div>
 
@@ -70,7 +79,11 @@ function Perfil() {
               <div className={styles.filas}>
                 <p>Correo electrónico</p>
                 <input
-                  type="email" readOnly defaultValue={profile.email}/>
+                  className={styles.input_perfil}
+                  type="email"
+                  readOnly
+                  defaultValue={profile.email}
+                />
               </div>
 
               {/* <div className={styles.filas}>

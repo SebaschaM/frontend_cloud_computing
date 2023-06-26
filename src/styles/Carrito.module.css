@@ -3,7 +3,7 @@
   margin: 0;
 }
 
-input{
+.input_carrito{
   width: 100%;
   font-size: 13px;
   background-color: #28282a;
@@ -31,7 +31,7 @@ input{
   background-color: #141415;
 }
 
-.content_cantidad input {
+.cantidad_input {
   width: 35px;
   background-color: #141415;
 }
@@ -153,7 +153,7 @@ input{
   background-color: #141415;
 }
 
-.content_nombre_tarjeta input {
+.nombre_tarjeta {
   width: 98%;
   height: 40px;
 }
@@ -177,7 +177,7 @@ input{
   margin-right: 3%;
 }
 
-.fecha_input input {
+.fecha_input_targeta {
   width: 100%;
   height: 40px;
 }

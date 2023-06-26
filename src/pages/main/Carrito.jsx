@@ -34,7 +34,7 @@ function Carrito() {
               </div>
             </div>
             <div className={styles.content_cantidad}>
-              <input type="number" value="1" />
+              <input className={`${styles.cantidad_input} ${styles.input_carrito}`} type="number" value="1" />
             </div>
             <div className={styles.product_price}>
               <p>S/.180</p>
@@ -62,7 +62,7 @@ function Carrito() {
               </div>
             </div>
             <div className={styles.content_cantidad}>
-              <input type="number" value="1" />
+              <input className={`${styles.cantidad_input} ${styles.input_carrito}`} type="number" value="1" />
             </div>
             <div className={styles.product_price}>
               <p>S/.180</p>
@@ -90,7 +90,7 @@ function Carrito() {
               </div>
             </div>
             <div className={styles.content_cantidad}>
-              <input type="number" value="1" />
+              <input className={`${styles.cantidad_input} ${styles.input_carrito}`} type="number" value="1" />
             </div>
             <div className={styles.product_price}>
               <p>S/.180</p>
@@ -126,19 +126,19 @@ function Carrito() {
               </div>
               <div className={styles.content_nombre_tarjeta}>
                 <p className={styles.title}>Nombre del propietario</p>
-                <input type="text" placeholder="Nombre del propietario" required="true" />
+                <input className={`${styles.nombre_tarjeta} ${styles.input_carrito}`} type="text" placeholder="Nombre del propietario" required="true" />
                 <p className={styles.title}>Número de tarjeta</p>
-                <input type="number" placeholder="1111 2222 3333 4444" required="true" />
+                <input className={`${styles.nombre_tarjeta} ${styles.input_carrito}`} type="number" placeholder="1111 2222 3333 4444" required="true" />
               </div>
 
               <div className={styles.content_fecha}>
                 <div className={styles.fecha_input}>
                   <p className={styles.title}>Fecha de caducidad</p>
-                  <input type="date" placeholder="MM/AA" required="true" />
+                  <input className={`${styles.fecha_input_targeta} ${styles.input_carrito}`} type="date" placeholder="MM/AA" required="true" />
                 </div>
                 <div className={styles.fecha_input}>
                   <p className={styles.title}>CVV</p>
-                  <input type="number" placeholder="CVV" required="true" maxLength="3" />
+                  <input className={`${styles.fecha_input_targeta} ${styles.input_carrito}`} type="number" placeholder="CVV" required="true" maxLength="3" />
                 </div>
               </div>
 

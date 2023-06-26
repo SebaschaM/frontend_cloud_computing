@@ -208,7 +208,7 @@
 }
 
 .texto_1 {
-  width: 48%;
+  width: 40%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -222,9 +222,10 @@
 }
 
 .texto_1 p {
-  font-size: 19px;
-  color: #fff;
+  font-size: 15px;
+  color: #BBBBBB;
   margin: 30px;
+  text-align: center;
 }
 
 .boton2 {
@@ -257,7 +258,7 @@
 }
 
 .lugares {
-  width: 75%;
+  width: 70%;
   height: 60%;
   display: flex;
   flex-wrap: wrap;
@@ -265,7 +266,7 @@
   align-items: center;
   margin-top: 20%;
   margin-bottom: 5%;
-  padding: 150px;
+  padding: 0 150px 150px 150px;
 }
 
 .lugares h3,
@@ -278,9 +279,10 @@ p {
 }
 
 .general {
-  background-color: rgb(31, 32, 32);
-  width: 30%;
-  height: 40%;
+  background-color: #141415;
+  width: 25%;
+  height: 200px;
+  padding: 20px 20px 20px 40px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -288,25 +290,33 @@ p {
 }
 
 .contenido {
+  width: 100%;
   display: flex;
-  margin-top: 15px;
+  margin-top: 20px;
 }
 
 .mood {
-  width: 30px;
-  height: 30px;
+  width: 20px;
+  height: 20px;
   filter: invert(100%);
   margin-right: 10px;
 }
 
 .tex {
-  margin-top: 20px;
+  width: 100%;
+  margin-top: 25px;
+  color: #BBBBBB;
+  margin-bottom: 15px;
+}
+.tex p{
+  color: #BBBBBB;
 }
 
 .general2 {
   background-color: rgb(31, 32, 32);
-  width: 30%;
-  height: 40%;
+  width: 25%;
+  height: 200px;
+  padding: 20px 20px 20px 40px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -316,8 +326,9 @@ p {
 
 .general3 {
   background-color: rgb(31, 32, 32);
-  width: 65%;
-  height: 40%;
+  width: 61%;
+  height: 200px;
+  padding: 20px 20px 20px 40px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -329,6 +340,7 @@ p {
   width: 50%;
   height: 50%;
   display: flex;
+  margin-top: 40px;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
@@ -355,7 +367,6 @@ p {
 
 .formulario {
   width: 80%;
-  height: 80vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -368,43 +379,42 @@ p {
   color: #000;
 }
 
-form {
+.form {
   display: flex;
   flex-direction: column;
   justify-content: center;
   width: 70%;
 }
 
-label {
+.label_home {
   font-size: 18px;
-  color: #000000;
+  color: #626262;
   margin-bottom: 5px;
 }
 
-input,
-textarea {
+.input_home {
   width: 98%;
   padding: 20px 14px;
-  background-color: #dfdbdb;
+  background-color: #F1F1F1;
   border: 0;
   font-size: 15px;
   color: #050505;
   margin-bottom: 5px;
   border-radius: 10px;
 }
-
+.description_home{
+}
 .btn {
   background-color: #000000;
   display: flex;
   justify-content: center;
   cursor: pointer;
   color: #f8f6f6;
-  width: 35%;
-  top: -6rem;
-  width: 17rem;
+  width: 100%;
   height: 3.8rem;
   font-size: 1rem;
   border-radius: 35px;
+  margin-top: 20px;
 }
 
 .her {
@@ -414,13 +424,11 @@ textarea {
   align-items: center;
 }
 
-.her p {
-  font-size: 20px;
-}
 .frase {
   width: 60%;
-  font-size: 13px;
-  color: #000;
+  color: #626262;
+  font-size: 15px;
+  text-align: center;
 }
 
 .gerente p {
@@ -429,7 +437,7 @@ textarea {
   justify-content: center;
   align-items: center;
   font-size: 20px;
-  color: #000;
+  color: #626262;
 }
 .gerente_img {
   margin: 45px;
@@ -454,9 +462,9 @@ textarea {
 }
 
 .div_1 {
-  background-color: rgb(202, 199, 199);
-  width: 70%;
-  height: 22vh;
+  background-color: #F1F1F1;
+  width: 90%;
+  height: 25vh;
   display: flex;
   flex-direction: row;
   border-radius: 0.625rem;
@@ -476,31 +484,34 @@ textarea {
 }
 .texto_fo p {
   font-size: 1.25rem;
-  color: #000;
+  color: #626262;
 }
 
 .desc {
-  width: 20%;
+  height: auto;
   margin: 1.25rem;
+  margin-left: 70px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  align-items: end;
+  align-items: flex-start;
   color: #000;
 }
 
 .end {
-  width: 50%;
+  width: 30%;
   display: flex;
   justify-content: space-between;
   justify-content: end;
-  margin: 2.5rem;
+  margin: 1.5rem;
 }
 
 .desc a {
   text-decoration: none;
   font-size: 0.938rem;
-  color: #000;
+  color: #59607C;
+  flex: 1;
+  margin-bottom: 5px;
 }
 
 /* Modal */

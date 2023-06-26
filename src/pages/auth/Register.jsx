@@ -56,7 +56,7 @@ function Register() {
             </button>
 
             {/* mostrar mensaje */}
-            {message && <span>{message}</span>}
+            {message && <span className={styles.mensaje_error}>{message}</span>}
           </form>
           <div className={styles.content_foot}>
             <p>¿Ya tiene una cuenta?</p>

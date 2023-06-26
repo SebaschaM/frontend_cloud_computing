@@ -174,12 +174,9 @@
   margin-bottom: 2%;
 }
 
-.mensaje{
-  color: black;
-}
 /*===============  Mensaje de error========================*/
 
-span{
+.mensaje_error{
   color:red;
   font-size: 13px;
   width: 45%;

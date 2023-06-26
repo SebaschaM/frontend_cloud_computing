@@ -54,7 +54,7 @@ function Login() {
                 }
               })}
             />
-            {errors.email && <span>{errors.email.message}</span>}
+            {errors.email && <span className={styles.mensaje_error}>{errors.email.message}</span>}
             <input type="password" placeholder="Contraseña"
               {...register("password", {
                 required: {
@@ -67,13 +67,13 @@ function Login() {
                 }
               })}
             />
-            {errors.password && <span>{errors.password.message}</span>}
+            {errors.password && <span className={styles.mensaje_error}>{errors.password.message}</span>}
 
             <button type="submit" className={styles.btn_ingresar}>
               Ingresar
             </button>
             {/* mostrar mensaje */}
-            {message && <span>{message}</span>}
+            {message && <span className={styles.mensaje_error}>{message}</span>}
           </form>
           <div className={styles["content_foot"]}>
             <p>¿Aún no tienes una cuenta?</p>
