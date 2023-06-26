@@ -3,10 +3,31 @@ import styles from "../../styles/Perfil.module.css";
 import stylesPedido from "../../styles/Pedido.module.css";
 import Next from "../../assets/icon-next.svg";
 import { Link } from 'react-router-dom';
+import useFetch from "../../hooks/useFetch.JSX";
+import { useState, useEffect, useContext } from "react";
+import { StoreContext } from "../../context/StoreContext";
+
 
 function Perfil() {
+  const {state} = useContext (StoreContext)
+  const { getProfile } = useFetch();
+  const [profile, setProfile] = useState([]);
+  const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImZyYW5rQGdtYWlsLmNvbSIsImlkIjozLCJpYXQiOjE2ODc3NDUxMDF9.92ku8Mv7NmIl_QVab7-g7S4VTcBlrK-gBzbL488u--Q";
+  const handleBranchList = async () => {
+    try {
+      const data = await getProfile("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImZyYW5rQGdtYWlsLmNvbSIsImlkIjozLCJpYXQiOjE2ODc3NDUxMDF9.92ku8Mv7NmIl_QVab7-g7S4VTcBlrK-gBzbL488u--Q");
+      setProfile(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  useEffect(() => {
+    handleBranchList();
+  },);
+
   return (
     <>
+    
       <Header />
       <div className={stylesPedido.content_main_pedido_logeado}>
         <div className={stylesPedido.content_login_pedido_logeado}>
@@ -36,16 +57,12 @@ function Perfil() {
             <div className={styles.content_detalledatos1}>
               <div className={styles.filas}>
                 <p>Nombres y Apellidos</p>
-                <input type="text" readOnly placeholder="Frank Cabanillas" />
+                <input type="text" readOnly defaultValue={profile.fullname}/>
               </div>
               <div className={styles.filas}>
                 <p>Teléfono</p>
                 <input
-                  type="text"
-                  readOnly
-                  placeholder="955040321"
-                  maxLenght="9"
-                />
+                  type="text" readOnly defaultValue={profile.phone}/>
               </div>
             </div>
 
@@ -53,16 +70,13 @@ function Perfil() {
               <div className={styles.filas}>
                 <p>Correo electrónico</p>
                 <input
-                  type="email"
-                  readOnly
-                  placeholder="frankero123@gmail.com"
-                />
+                  type="email" readOnly defaultValue={profile.email}/>
               </div>
 
-              <div className={styles.filas}>
+              {/* <div className={styles.filas}>
                 <p>Contraseña</p>
-                <input type="password" readOnly placeholder="2141242" />
-              </div>
+                <input type="password" readOnly />
+              </div> */}
             </div>
 
             <div className={styles.cerrar_btn}>

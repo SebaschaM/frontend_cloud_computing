@@ -36,24 +36,24 @@ function Perfil_Actualizar() {
             <div className={styles.content_detalledatos1}>
               <div className={styles.filas}>
                 <p>Nombres y Apellidos</p>
-                <input type="text" placeholder="Frank Cabanillas" />
+                <input type="text" />
               </div>
               <div className={styles.filas}>
                 <p>Teléfono</p>
-                <input type="text" placeholder="955040321" maxLenght="9" />
+                <input type="text"/>
               </div>
             </div>
 
             <div className={styles.content_detalledatos2}>
               <div className={styles.filas}>
                 <p>Correo electrónico</p>
-                <input type="email" placeholder="frankero123@gmail.com" />
+                <input type="email" />
               </div>
 
-              <div className={styles.filas}>
+              {/* <div className={styles.filas}>
                 <p>Contraseña</p>
-                <input type="password" placeholder="2141242" />
-              </div>
+                <input type="password" readOnly  />
+              </div> */}
             </div>
 
             <div className={styles.cerrar_btn}>

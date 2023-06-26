@@ -1,4 +1,28 @@
-const useFetch = () => {
+const useFetch = () => { 
+
+  const getProfile = async (token) => {
+    console.log(token)
+    try {
+      const response = await fetch("http://localhost:3000/api/auth/profile", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization:`Bearer ${token}`
+        }, 
+        
+      })
+      if (response.ok) {
+        const data = await response.json();
+        return data;
+      } else {
+        throw new Error("Error al obtener los datos del usuario");
+      }
+    }catch (error) {
+      throw new Error("Error de conexión");
+    
+    }
+  };
+
   //LISTADO DE SUCURSALES
   const getBranchList = async () => {
     try {
@@ -97,6 +121,7 @@ const useFetch = () => {
     getProductByBranch,
     getDetailProduct,
     getCategoryList,
+    getProfile,
     //getProductByCategoryByBranch,
   };
 };
