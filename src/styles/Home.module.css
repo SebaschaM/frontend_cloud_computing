@@ -112,6 +112,7 @@
   width: 13.5rem;
   display: flex;
   flex-direction: column;
+  gap: 1.5rem;
 }
 
 .category_item_select:hover {
