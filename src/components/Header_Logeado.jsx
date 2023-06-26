@@ -28,6 +28,17 @@ function Header() {
   };
 
   useEffect(() => {
+    // Verificar si el branchId ya está establecido en el localStorage
+    const storedBranchId = localStorage.getItem("branchId");
+    if (!storedBranchId) {
+      // Si no está establecido, obtener el ID de la sucursal seleccionada por defecto
+      const defaultBranchId = branchList.length > 0 ? branchList[0].id : "";
+      // Establecer el branchId en el localStorage
+      localStorage.setItem("branchId", defaultBranchId);
+    }
+  }, [branchList]);
+
+  useEffect(() => {
     handleBranchList();
   }, [selectedOption]);
 
