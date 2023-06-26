@@ -2,12 +2,28 @@ import Header from "../../components/Header_Logeado";
 import Next from "../../assets/icon-next.svg";
 import Product from "../../assets/Wine.png";
 import styles from "../../styles/Pedido.module.css";
-import { useState } from "react";
 import { Link } from 'react-router-dom';
+import { useState, useEffect } from "react";
+import useFetch from "../../hooks/useFetch.JSX";
+const { getOrderList } = useFetch();
 
 function Pedido_Complete() {
 
   const [showModalProduct, setShowModalProduct] = useState(false);
+  const [ordeList, setOrdeList] = useState([]);
+
+  const handleOrderList = async () => {
+    try {
+      const data = await getOrderList("1");
+      setOrdeList(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    handleOrderList();
+  }, []);
 
   return (
     <div className={styles.content_boss_pedido}>
@@ -32,85 +48,38 @@ function Pedido_Complete() {
         </div>
 
         <div className={styles.content_listado_pedidos}>
-          { }
-          <div
-            className={styles.content_unidad_pedido}
-            onClick={() => setShowModalProduct(true)}
-          >
-            <div className={styles.pedido_description}>
-              <p className={styles.description_title}>Código de Pedido N° 1</p>
-              <div className={styles.description_base}>
-                <p className={styles.base}>Productos:</p>
-                <p className={styles.text_content_pedido}>5</p>
+
+          {/* LISTA DE ORDENES COMPLETADOS */}
+          {ordeList
+            .filter(order => order.state_id === 2)
+            .slice(0, 3)
+            .map((order) => (
+              <div
+                className={styles.content_unidad_pedido}
+                onClick={() => setShowModalProduct(true)}
+              >
+                <div className={styles.pedido_description}>
+                  <p className={styles.description_title}>Código de Pedido N° {order.id}</p>
+                  <div className={styles.description_base}>
+                    <p className={styles.base}>Productos:</p>
+                    <p className={styles.text_content_pedido}>{order.quantity}</p>
+                  </div>
+                  <div className={styles.description_base}>
+                    <p className={styles.base}>Precio Total:</p>
+                    <p className={styles.text_content_pedido}>{order.total}</p>
+                  </div>
+                </div>
+                <div className={styles.pedido_btn}>
+                  <button className={styles.Pedir}>
+                    <p className={styles.btn_total}>{order.total}</p>
+                    Pedir de Nuevo
+                    <span className={styles.icon}>
+                      <img src={Next} />
+                    </span>
+                  </button>
+                </div>
               </div>
-              <div className={styles.description_base}>
-                <p className={styles.base}>Precio Total:</p>
-                <p className={styles.text_content_pedido}>S/.180</p>
-              </div>
-            </div>
-            <div className={styles.pedido_btn}>
-              <button className={styles.Pedir}>
-                <p className={styles.btn_total}>S/.540</p>
-                Pedir de Nuevo
-                <span className={styles.icon}>
-                  <img src={Next} />
-                </span>
-              </button>
-            </div>
-          </div>
-          { }
-          <div
-            className={styles.content_unidad_pedido}
-            onClick={() => setShowModalProduct(true)}
-          >
-            <div className={styles.pedido_description}>
-              <p className={styles.description_title}>Código de Pedido N° 1</p>
-              <div className={styles.description_base}>
-                <p className={styles.base}>Productos:</p>
-                <p className={styles.text_content_pedido}>5</p>
-              </div>
-              <div className={styles.description_base}>
-                <p className={styles.base}>Precio Total:</p>
-                <p className={styles.text_content_pedido}>S/.180</p>
-              </div>
-            </div>
-            <div className={styles.pedido_btn}>
-              <button className={styles.Pedir}>
-                <p className={styles.btn_total}>S/.540</p>
-                Pedir de Nuevo
-                <span className={styles.icon}>
-                  <img src={Next} />
-                </span>
-              </button>
-            </div>
-          </div>
-          { }
-          <div
-            className={styles.content_unidad_pedido}
-            onClick={() => setShowModalProduct(true)}
-          >
-            <div className={styles.pedido_description}>
-              <p className={styles.description_title}>Código de Pedido N° 1</p>
-              <div className={styles.description_base}>
-                <p className={styles.base}>Productos:</p>
-                <p className={styles.text_content_pedido}>5</p>
-              </div>
-              <div className={styles.description_base}>
-                <p className={styles.base}>Precio Total:</p>
-                <p className={styles.text_content_pedido}>S/.180</p>
-              </div>
-            </div>
-            <div className={styles.pedido_btn}>
-              <button className={styles.Pedir}>
-                <p className={styles.btn_total}>S/.540</p>
-                Pedir de Nuevo
-                <span className={styles.icon}>
-                  <img src={Next} />
-                </span>
-              </button>
-            </div>
-          </div>
-          { }
+            ))}
         </div>
       </div>
 
