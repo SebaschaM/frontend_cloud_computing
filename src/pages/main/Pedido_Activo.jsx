@@ -11,7 +11,8 @@ function Pedido_Activo() {
 
   const [showModalProduct, setShowModalProduct] = useState(false);
   const [ordeList, setOrdeList] = useState([]);
-  
+  const [idOrder, setIdOrder] = useState('')
+
   const handleOrderList = async () => {
     try {
       const data = await getOrderList("1");
@@ -21,10 +22,18 @@ function Pedido_Activo() {
     }
   };
 
+  const handleDetailOrder = async (idOrder) => {
+    try {
+      setIdOrder(idOrder)
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   useEffect(() => {
     handleOrderList();
   }, []);
-  
+
   return (
     <div className={styles.content_boss_pedido_logeado}>
       <Header />
@@ -52,17 +61,20 @@ function Pedido_Activo() {
         <div className={styles.content_listado_pedidos}>
 
           {/* LISTA DE ORDENES ACIVOS */}
-
           {ordeList
+            .filter((order, index, self) => self.findIndex(o => o.order_id === order.order_id) === index)
             .filter(order => order.state_id === 1)
             .slice(0, 3)
             .map((order) => (
               <div
                 className={styles.content_unidad_pedido}
-                onClick={() => setShowModalProduct(true)}
+                onClick={() => {
+                  setShowModalProduct(true);
+                  handleDetailOrder(order.order_id);
+                }}
               >
                 <div className={styles.pedido_description}>
-                  <p className={styles.description_title}>Código de Pedido N° {order.id}</p>
+                  <p className={styles.description_title}>Código de Pedido N° {order.order_id}</p>
                   <div className={styles.description_base}>
                     <p className={styles.base}>Productos:</p>
                     <p className={styles.text_content_pedido}>{order.quantity}</p>
@@ -86,6 +98,7 @@ function Pedido_Activo() {
       </div>
       {/* Modal */}
       {showModalProduct && (
+
         <div className={styles.modal_principal}>
           <div
             className={styles.modal_pedido_main}
@@ -94,7 +107,7 @@ function Pedido_Activo() {
           <div className={styles.content_modal_pedido}>
             <div className={styles.content__modal_text}>
               <p className={styles.title_modal_pedido}>Detalle pedido</p>
-              <p className={styles.title2_modal_pedido}>Código de Pedido N° 1</p>
+              <p className={styles.title2_modal_pedido}>Código de Pedido N° {idOrder}</p>
               <p className={styles.description_modal_pedido}>
                 Pedidos completados y pendientes, cancela en cualquier momento o
                 pidelo de nuevo.
@@ -103,55 +116,36 @@ function Pedido_Activo() {
             <div className={styles.separacion_modal}></div>
 
             <div className={styles.content_list_product}>
-              { }
-              <div className={styles.content_unidad_product}>
-                <div className={styles.content_product_main}>
-                  <div className={styles.product_description_img}>
-                    <img src={Product} alt="" />
-                  </div>
-                  <div className={styles.product_description_main}>
-                    <p className={styles.product_description_title}>
-                      Vino semiseco (QUEIROLO)
-                    </p>
-                    <div className={styles.product_description_base}>
-                      <p className={styles.product_base}>Descripción:</p>
-                      <p className={styles.product_text_content_pedido}>750 ml</p>
+              {/* LISTADO DE DETALLE ORDEN */}
+              {ordeList
+                .filter(order => order.order_id === idOrder)
+                .slice(0, 3)
+                .map((order) => (
+
+                  <div className={styles.content_unidad_product}>
+                    <div className={styles.content_product_main}>
+                      <div className={styles.product_description_img}>
+                        <img src={order.url} alt="" />
+                      </div>
+                      <div className={styles.product_description_main}>
+                        <p className={styles.product_description_title}>
+                          {order.name}
+                        </p>
+                        <div className={styles.product_description_base}>
+                          <p className={styles.product_base}>Descripción:</p>
+                          <p className={styles.product_text_content_pedido}>{order.description}</p>
+                        </div>
+                        <div className={styles.product_description_base}>
+                          <p className={styles.product_base}>Cantidad:</p>
+                          <p className={styles.product_text_content_pedido}>{order.quantity}</p>
+                        </div>
+                      </div>
                     </div>
-                    <div className={styles.product_description_base}>
-                      <p className={styles.product_base}>Cantidad:</p>
-                      <p className={styles.product_text_content_pedido}>5</p>
-                    </div>
-                  </div>
-                </div>
-                <div className={styles.product_price}>
-                  <p>S/.180</p>
-                </div>
-              </div>
-              { }
-              <div className={styles.content_unidad_product}>
-                <div className={styles.content_product_main}>
-                  <div className={styles.product_description_img}>
-                    <img src={Product} alt="" />
-                  </div>
-                  <div className={styles.product_description_main}>
-                    <p className={styles.product_description_title}>
-                      Vino semiseco (QUEIROLO)
-                    </p>
-                    <div className={styles.product_description_base}>
-                      <p className={styles.product_base}>Descripción:</p>
-                      <p className={styles.product_text_content_pedido}>750 ml</p>
-                    </div>
-                    <div className={styles.product_description_base}>
-                      <p className={styles.product_base}>Cantidad:</p>
-                      <p className={styles.product_text_content_pedido}>5</p>
+                    <div className={styles.product_price}>
+                      <p>{order.subtotal}</p>
                     </div>
                   </div>
-                </div>
-                <div className={styles.product_price}>
-                  <p>S/.180</p>
-                </div>
-              </div>
-              { }
+                ))}
             </div>
 
             <div className={styles.content_button}>
