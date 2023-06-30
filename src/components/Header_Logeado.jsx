@@ -7,6 +7,19 @@ import { useLocalStorage } from "../hooks/useLocalStorage.jsx";
 import { StoreContext } from "../context/StoreContext.jsx";
 
 function Header() {
+
+  const [profile, setProfile] = useState([]);
+
+  useEffect(() => {
+    const user = localStorage.getItem('user');
+    setProfile(user);
+    if (user) {
+      const userData = JSON.parse(user);
+      setProfile(userData);
+    }
+  },[]);
+
+
   const { getBranchList } = useFetch();
   const { dispatch } = useContext(StoreContext);
   const [branchList, setBranchList] = useState([]);
@@ -110,8 +123,8 @@ function Header() {
         <Link to="/perfil">
           <div className={styles.content_userlogeado}>
             <div className={styles.user_name}>
-              <p className={styles.nameHeader}>Kenneth De La Cruz</p>
-              <p className={styles.phoneHeader}>+51 982630170</p>
+              <p className={styles.nameHeader}>{profile.fullname}</p>
+              <p className={styles.phoneHeader}>{profile.phone}</p>
             </div>
             <div className={styles.user_photo}>
               <img src={photo} alt="" />

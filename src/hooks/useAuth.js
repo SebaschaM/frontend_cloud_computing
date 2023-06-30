@@ -49,7 +49,28 @@ function useAuth() {
         }
     }
 
-    return { Login, Register }
+    async function ActualizarPerfil(body, token) {
+        console.log(body)
+        try {
+            
+            const response = await fetch("http://localhost:3000/api/auth/updateprofile", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${token}`
+                },
+                body: JSON.stringify(body),
+            });
+            console.log(response)
+            const data = await response.json()  
+            return data
+
+        } catch (error) {
+            throw new Error("Error de conexión");
+        }
+    }
+
+    return { Login, Register, ActualizarPerfil}
 }
 
 export { useAuth };
