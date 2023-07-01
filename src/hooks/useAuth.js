@@ -66,8 +66,26 @@ function useAuth() {
             throw new Error("Error de conexión");
         }
     }
+    async function CrearOrder(order) {
+       
+        try {
+            const response = await fetch("http://localhost:3000/api/order", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(order)
+            });
 
-    return { Login, Register, ActualizarPerfil}
+            const data = await response.json()
+            return data
+
+        } catch (error) {
+            throw new Error("Error de conexión");
+        }
+    }
+
+    return { Login, Register, ActualizarPerfil, CrearOrder}
 }
 
 export { useAuth };

@@ -3,7 +3,6 @@ import wine from "../../assets/ImgWine.png";
 import styles from "../../styles/Home.module.css";
 import { useState, useEffect, useContext } from "react";
 import { StoreContext } from "../../context/StoreContext";
-7;
 import { Link } from "react-router-dom";
 
 import Direccion from "../../assets/location-pin.png";
@@ -40,7 +39,8 @@ function Home() {
       const data = await getProductByBranch(state.selectedBranchId);
       setProductList(data);
       // Eliminar el arreglo de productos del localStorage al cambiar de sucursal
-      localStorage.removeItem("cart");
+      // localStorage.removeItem("cart"); 
+      // [CORREGIR Linea 43] - EL ARREGLO SE ELIMINA AUTOMATIVAMENTE AL IR A HOME
     } catch (error) {
       console.log(error);
     }
@@ -82,6 +82,8 @@ function Home() {
           modalCount <= selectedProduct.stock
             ? modalCount
             : selectedProduct.stock,
+        url: selectedProduct.url,
+        description: selectedProduct.description,
       };
 
       cartItems.push(productToAdd);
@@ -316,7 +318,7 @@ function Home() {
 
               <label className={styles.label_home} htmlFor="coments">Mensaje</label>
               <textarea
-               className={styles.input_home}
+                className={styles.input_home}
                 name="coments"
                 id="coments"
                 cols="30"
