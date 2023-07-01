@@ -66,8 +66,8 @@ function useAuth() {
             throw new Error("Error de conexión");
         }
     }
+
     async function CrearOrder(order) {
-       
         try {
             const response = await fetch("http://localhost:3000/api/order", {
                 method: "POST",
@@ -84,7 +84,6 @@ function useAuth() {
             throw new Error("Error de conexión");
         }
     }
-
     return { Login, Register, ActualizarPerfil, CrearOrder}
 }
 

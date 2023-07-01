@@ -15,13 +15,17 @@ function Pedido_Complete() {
 
   const handleOrderList = async () => {
     try {
-      const data = await getOrderList("1");
-      setOrdeList(data);
+      const user = localStorage.getItem('user');
+      if (user) {
+        const userData = JSON.parse(user);
+        const data = await getOrderList(userData.user.id);
+        setOrdeList(data);
+      }
     } catch (error) {
       console.log(error);
     }
   };
-
+  
   const handleDetailOrder = async (idOrder) => {
     try {
       setIdOrder(idOrder)

@@ -18,8 +18,6 @@ function Perfil() {
       const userData = JSON.parse(user);
 
       setProfile(userData.user);
-
-      // console.log("PERFIL: "+JSON.stringify(userData.user));
     }
   }, []);
 

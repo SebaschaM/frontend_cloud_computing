@@ -11,24 +11,17 @@ import O4 from "../../assets/plin.png";
 import styles from "../../styles/Carrito.module.css";
 import styles2 from "../../styles/Pedido.module.css";
 import { useState, useEffect } from "react";
+import { useNavigate } from 'react-router-dom';
 import { useAuth } from "../../hooks/useAuth";
 
 
 function Carrito() {
 
+  const navigate = useNavigate();
   const { CrearOrder } = useAuth();
   const [carrito, setCarrito] = useState([]);
   const [total, setTotal] = useState('');
 
-  const [createorder, setCreateOrder] = useState({
-    subtotal: '',
-    total: '',
-    purchase_date: '',
-    state_id: '',
-    user_id: '',
-    quantity: '',
-    product_id: ''
-  });
   useEffect(() => {
     const card = localStorage.getItem('cart');
 
@@ -66,53 +59,49 @@ function Carrito() {
     }
   };
 
-  const handleCreateOrder = async () => {
-    try {
-      const user = localStorage.getItem('user');
-      const card = localStorage.getItem('cart');
+  const handleCreateOrder = async (event) => {
+    event.preventDefault();
+    // event.preventDefault();
+    const user = localStorage.getItem('user');
+    const card = localStorage.getItem('cart');
 
-      if (card) {
-        const Card = JSON.parse(card);
-        const userData = JSON.parse(user);
+    if (card) {
+      const Card = JSON.parse(card);
+      const userData = JSON.parse(user);
 
-        const updatedCreateOrder = { ...createorder };
-        //Fecha actual
-        const currentDate = new Date();
-        const year = currentDate.getFullYear();
-        const month = String(currentDate.getMonth() + 1).padStart(2, '0');
-        const day = String(currentDate.getDate()).padStart(2, '0');
-        const FechaActual = `${year}-${month}-${day}`;
+      //Fecha actual
+      const currentDate = new Date();
+      const year = currentDate.getFullYear();
+      const month = String(currentDate.getMonth() + 1).padStart(2, '0');
+      const day = String(currentDate.getDate()).padStart(2, '0');
+      const FechaActual = `${year}-${month}-${day}`;
 
-        // Capturar el ID del producto, cantidad y precio del card
-        const totalQuantity = Card.length;
-        const productIds = Card.map((card) => card.id);
-        // const price = Card.map((card) => card.price);
+      //INTERACCION POR CADA PRODUCTO
+      for (let i = 0; i < Card.length; i++) {
+        const { price, quantity, id } = Card[i];
 
-        //DATOS ACTUALIZADOS PARA CREAR ORDER
-        updatedCreateOrder.purchase_date = FechaActual;
-        updatedCreateOrder.state_id = 1;
-        updatedCreateOrder.user_id = userData.user.id;
-        updatedCreateOrder.subtotal = 20;
-        updatedCreateOrder.quantity = totalQuantity;
-        updatedCreateOrder.product_id = productIds;
+        // Crear el pedido para cada producto
+        const order = {
+          subtotal: price,
+          total: price * quantity,
+          purchase_date: FechaActual,
+          state_id: 1,
+          user_id: userData.user.id,
+          quantity: quantity,
+          product_id: id
+        };
 
-        //Subtotal
-        const subtotales = Card.map((card) => card.price * card.quantity);
-        const total = subtotales.reduce((acumulador, subtotal) => acumulador + subtotal, 0);
-        updatedCreateOrder.total = total;
-
-        setCreateOrder(updatedCreateOrder);
-
-        const order = await CrearOrder(updatedCreateOrder);
-        if (order) {
-          //Eliminar el arreglo de productos del localStorage
-          localStorage.removeItem("cart");
-          console.log("ORDER CREADO - CARRITO ELIMINADO")
+        try {
+          const response = await CrearOrder(order);
+          console.log('Pedido creado:', response);
+          navigate("/");
+        } catch (error) {
+          console.log('Error al crear el pedido:', error);
         }
       }
-    } catch (error) {
-      console.log(error);
+      localStorage.removeItem("cart");
     }
+
   };
 
   return (
