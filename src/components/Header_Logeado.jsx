@@ -15,7 +15,7 @@ function Header() {
     setProfile(user);
     if (user) {
       const userData = JSON.parse(user);
-      setProfile(userData);
+      setProfile(userData.user);
     }
   },[]);
 

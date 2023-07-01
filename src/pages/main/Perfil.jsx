@@ -9,28 +9,19 @@ import { StoreContext } from "../../context/StoreContext";
 
 
 function Perfil() {
-  // const { state } = useContext(StoreContext)
-  // const { getProfile } = useFetch();
   const [profile, setProfile] = useState([]);
-  // const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImZyYW5rQGdtYWlsLmNvbSIsImlkIjozLCJpYXQiOjE2ODc3NDUxMDF9.92ku8Mv7NmIl_QVab7-g7S4VTcBlrK-gBzbL488u--Q";
-  // const handleBranchList = async () => {
-  //   try {
-  //     const data = await getProfile("131232132131231");
-  //     setProfile(data);
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
+
   useEffect(() => {
     const user = localStorage.getItem('user');
-    // setProfile(user);
+
     if (user) {
       const userData = JSON.parse(user);
-      setProfile(userData.user);
-    }
 
-    // handleBranchList();
-  },[]);
+      setProfile(userData.user);
+
+      // console.log("PERFIL: "+JSON.stringify(userData.user));
+    }
+  }, []);
 
   return (
     <>

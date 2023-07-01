@@ -8,11 +8,7 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from "../../hooks/useAuth";
 
-
-
-
 function Login() {
-
 
   const [message, setMessage] = useState('')
   const navigate = useNavigate();
@@ -23,14 +19,9 @@ function Login() {
   const onSubmit = async data => {
     setFormData(data);
     const login = await Login(data.email, data.password)
-    // console.log(login.user)
+
     if (login.token) {
-      console.log(login.user)
-
-
       localStorage.setItem('user', JSON.stringify(login));
-
-
       return navigate("/");
     }
     setMessage(login.message)
