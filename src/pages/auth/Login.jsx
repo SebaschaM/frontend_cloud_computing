@@ -31,9 +31,12 @@ function Login() {
     <div className={styles["content_boss"]}>
       <div className={styles["content_input"]}>
         <div className={styles["content_flecha"]}>
-          <button className={styles.Atras}>
-            <img className={styles.flecha} src={Flecha} />
-          </button>
+
+          <Link to="/" className={styles.Atras_main}>
+            <button className={styles.Atras}>
+              <img className={styles.flecha} src={Flecha} />
+            </button>
+          </Link>
         </div>
         <div className={styles["content_datos"]}>
           <div className={styles["content_title"]}>
@@ -63,7 +66,7 @@ function Login() {
                   message: "Necesitas este campo"
                 },
                 minLength: {
-                  value: 6,
+                  value: 3,
                   message: "La contraseña debe tener al menos 6 caracteres"
                 }
               })}

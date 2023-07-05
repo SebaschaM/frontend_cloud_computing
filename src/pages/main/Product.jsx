@@ -1,4 +1,4 @@
-import Header from "../../components/Header_Logeado";
+import Header from "../../components/Header";
 import wine from "../../assets/ImgWine.png";
 import { useEffect, useState, useContext } from "react";
 import useFetch from "../../hooks/useFetch.JSX";

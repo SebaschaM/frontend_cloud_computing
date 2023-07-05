@@ -75,7 +75,12 @@
   flex-direction: column;
   background-color: #141415;
 }
-.content_button button {
+.content_button a {
+  width:auto;
+  height: auto;
+}
+.content_button a button {
+  width: 100%;
   position: relative;
   padding: 15px;
   border-radius: 8px;

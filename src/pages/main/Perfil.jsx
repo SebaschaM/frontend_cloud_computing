@@ -1,15 +1,15 @@
-import Header from "../../components/Header_Logeado";
+import Header from "../../components/Header";
 import styles from "../../styles/Perfil.module.css";
 import stylesPedido from "../../styles/Pedido.module.css";
 import Next from "../../assets/icon-next.svg";
 import { Link } from 'react-router-dom';
-import useFetch from "../../hooks/useFetch.JSX";
-import { useState, useEffect, useContext } from "react";
-import { StoreContext } from "../../context/StoreContext";
+import { useState, useEffect } from "react";
+import { useNavigate } from 'react-router-dom';
 
 
 function Perfil() {
   const [profile, setProfile] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const user = localStorage.getItem('user');
@@ -20,6 +20,14 @@ function Perfil() {
       setProfile(userData.user);
     }
   }, []);
+
+  const handleCerrarSesion = (event) => {
+    event.preventDefault();
+    //Cerrar sesion - se eliminar local storage
+    localStorage.removeItem("user");
+    localStorage.removeItem("cart");
+    navigate("/");
+  }
 
   return (
     <>
@@ -81,22 +89,15 @@ function Perfil() {
                   defaultValue={profile.email}
                 />
               </div>
-
-              {/* <div className={styles.filas}>
-                <p>Contraseña</p>
-                <input type="password" readOnly />
-              </div> */}
             </div>
 
             <div className={styles.cerrar_btn}>
-              <Link to="/login" >
-                <button className={stylesPedido.Cancelar}>
-                  Cerrar Sesión
-                  <span className={stylesPedido.icon}>
-                    <img src={Next} />
-                  </span>
-                </button>
-              </Link>
+              <button className={stylesPedido.Cancelar} onClick={handleCerrarSesion}>
+                Cerrar Sesión
+                <span className={stylesPedido.icon}>
+                  <img src={Next} />
+                </span>
+              </button>
             </div>
           </form>
         </div>

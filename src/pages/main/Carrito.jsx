@@ -1,7 +1,8 @@
 import Next from "../../assets/icon-next.svg";
-import Header from "../../components/Header_Logeado";
+import Header from "../../components/Header";
 import Product from "../../assets/Wine.png";
 import Delete from "../../assets/IconDelete.svg";
+import { Link } from "react-router-dom";
 
 import O1 from "../../assets/mastercard.png";
 import O2 from "../../assets/visa.png";
@@ -22,8 +23,13 @@ function Carrito() {
   const [carrito, setCarrito] = useState([]);
   const [total, setTotal] = useState('');
 
+  const [logeado, setLogeado] = useState(false);
+  const [sinlogear, setSinlogear] = useState(false);
+  const [showModalLogeo, setShowModalLogeo] = useState(false);
+
   useEffect(() => {
     const card = localStorage.getItem('cart');
+    const user = localStorage.getItem('user');
 
     if (card) {
       const Card = JSON.parse(card);
@@ -32,6 +38,13 @@ function Carrito() {
       const total = subtotales.reduce((acumulador, subtotal) => acumulador + subtotal, 0);
       setCarrito(Card);
       setTotal(total);
+    }
+    if (user != null) {
+      //Usuario Logeado
+      setLogeado(true);
+    } else {
+      //Usuario SIN Logear
+      setSinlogear(true);
     }
   }, []);
 
@@ -197,18 +210,70 @@ function Carrito() {
                 </div>
               </div>
               <div className={styles2.pedido_btn}>
-                <button className={styles2.Pedir}>
-                  <p className={styles2.btn_total}>S/.{total + 5}</p>
-                  Pagar Ahora
-                  <span className={styles2.icon}>
-                    <img src={Next} />
-                  </span>
-                </button>
+
+                {logeado && (
+                  <button className={styles2.Pedir} type="submit">
+                    <p className={styles2.btn_total}>S/.{total + 5}</p>
+                    Pagar Ahora
+                    <span className={styles2.icon}>
+                      <img src={Next} />
+                    </span>
+                  </button>
+                )}
+                {/* Button sin logear */}
+                {sinlogear && (
+                  <button className={styles2.Pedir}
+                    onClick={() => setShowModalLogeo(true)}>
+                    <p className={styles2.btn_total}>S/.{total + 5}</p>
+                    Pagar Ahora
+                    <span className={styles2.icon}>
+                      <img src={Next} />
+                    </span>
+                  </button>
+                )}
               </div>
             </form>
           </div>
         </div>
       </div>
+
+      {showModalLogeo && (
+        <div className={styles.modal_principal}>
+          <div
+            className={styles.modal_pedido_main}
+            onClick={() => setShowModalLogeo(false)}
+          ></div>
+          <div className={styles.content_login_pedido}>
+            <div className={styles.content_text}>
+              <p className={styles.title_pedido}>Inicia Sesión</p>
+              <p className={styles.description_pedido}>
+                Iniciar sesión o registrate para realizar tu compra. ¡Te esperamos!
+              </p>
+            </div>
+            <div className={styles.separacion}></div>
+            <div className={styles2.content_button}>
+
+              <Link to="/login">
+                <button className={styles.inicia_sesion}>
+                  Iniciar Sesión
+                  <span className={styles.icon}>
+                    <img src={Next} />
+                  </span>
+                </button>
+              </Link>
+
+              <Link to="/register">
+                <button className={styles.registrar}>
+                  Registrar
+                  <span className={styles.icon}>
+                    <img src={Next} />
+                  </span>
+                </button>
+              </Link>
+            </div>
+          </div>
+        </div>
+      )}
     </>
   );
 }

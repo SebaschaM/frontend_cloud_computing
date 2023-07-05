@@ -1,4 +1,4 @@
-import Header from "../../components/Header_Logeado";
+import Header from "../../components/Header";
 import Next from "../../assets/icon-next.svg";
 import Product from "../../assets/Wine.png";
 import styles from "../../styles/Pedido.module.css";

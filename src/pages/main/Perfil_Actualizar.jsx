@@ -1,4 +1,4 @@
-import Header from "../../components/Header_Logeado";
+import Header from "../../components/Header";
 import styles from "../../styles/Perfil.module.css";
 import stylesPedido from "../../styles/Pedido.module.css";
 import Next from "../../assets/icon-next.svg";
@@ -91,7 +91,6 @@ function Perfil_Actualizar() {
     if (user) {
       const userData = JSON.parse(user);
       setProfile(userData.user);
-      console.log("USE EFECT: " + JSON.stringify(userData.user))
     }
 
   }, []);

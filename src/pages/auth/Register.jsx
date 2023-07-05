@@ -14,15 +14,17 @@ function Register() {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({});
   const { Register } = useAuth();
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, formState: { errors } } = useForm();
 
   const onSubmit = async data => {
     setFormData(data);
     const register = await Register(data.fullname, data.email, data.password, data.phone)
+
+    console.log(data.phone);
     if (register.fullname) {
       setMessage('Registro exitoso')
-      setTimeout(() => { return navigate("/login");}, 2000)
-    }else{
+      setTimeout(() => { return navigate("/login"); }, 2000)
+    } else {
       setMessage(register.message)
     }
   };
@@ -45,11 +47,63 @@ function Register() {
           </div>
           <form onSubmit={handleSubmit(onSubmit)}
             className={styles.content_form}>
-            <input type="text" placeholder="Nombre completo" {...register('fullname')} />
-            <input type="password" placeholder="Contraseña" {...register('password')} />
-            <input type="email" placeholder="Correo electrónico" {...register('email')} />
-            <input type="number" placeholder="Celular" {...register('phone')} />
-
+            <input
+              type="text"
+              placeholder="Nombre completo"
+              {...register('fullname', {
+                required: {
+                  value: true,
+                  message: "Ingrese su Nombre completo"
+                },
+                pattern: {
+                  value:  /^[a-zA-Z0-9]{6,10}$/,
+                  message: "El formato no es correcto, mínimo 6 letras"
+                }
+              })} />
+            {errors.fullname && <span className={styles.mensaje_error}>{errors.fullname.message}</span>}
+            <input
+              type="password"
+              placeholder="Contraseña"
+              {...register('password', {
+                required: {
+                  value: true,
+                  message: "Ingrese una Contraseña"
+                },
+                pattern: {
+                  value:  /^[a-zA-Z0-9]{3,10}$/,
+                  message: "El formato no es correcto, mínimo 3 letras"
+                }
+              })} />
+            {errors.password && <span className={styles.mensaje_error}>{errors.password.message}</span>}
+            <input
+              type="email"
+              placeholder="Correo electrónico"
+              {...register('email', {
+                required: {
+                  value: true,
+                  message: "Ingrese un Correo electrónico"
+                },
+                pattern: {
+                  value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
+                  message: "El formato no es correcto"
+                }
+              })} />
+            {errors.email && <span className={styles.mensaje_error}>{errors.email.message}</span>}
+            <input
+              type="number"
+              placeholder="Celular"
+              {...register('phone', {
+                required: {
+                  value: true,
+                  maxLength: 9,
+                  message: "Ingrese un teléfono"
+                },
+                pattern: {
+                  value: /^[0-9]{9}$/i,
+                  message: "Ingrese un número de teléfono válido de 9 dígitos"
+                }
+              })} />
+            {errors.phone && <span className={styles.mensaje_error}>{errors.phone.message}</span>}
 
             <button type="submit" className={styles.btn_ingresar}>
               Registrar

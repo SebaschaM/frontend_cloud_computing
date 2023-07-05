@@ -1,6 +1,7 @@
 import Header from "../../components/Header";
 import Next from "../../assets/icon-next.svg";
 import styles from "../../styles/Pedido.module.css";
+import { Link } from "react-router-dom";
 
 function Pedido() {
   return (
@@ -17,18 +18,23 @@ function Pedido() {
           </div>
           <div className={styles.separacion}></div>
           <div className={styles.content_button}>
-            <button className={styles.inicia_sesion}>
-              Iniciar Sesión
-              <span className={styles.icon}>
-                <img src={Next} />
-              </span>
-            </button>
-            <button className={styles.registrar}>
-              Registrar
-              <span className={styles.icon}>
-                <img src={Next} />
-              </span>
-            </button>
+            <Link to="/login">
+              <button className={styles.inicia_sesion}>
+                Iniciar Sesión
+                <span className={styles.icon}>
+                  <img src={Next} />
+                </span>
+              </button>
+            </Link>
+
+            <Link to="/register">
+              <button className={styles.registrar}>
+                Registrar
+                <span className={styles.icon}>
+                  <img src={Next} />
+                </span>
+              </button>
+            </Link>
           </div>
         </div>
       </div>

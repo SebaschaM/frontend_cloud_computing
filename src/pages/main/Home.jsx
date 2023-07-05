@@ -1,4 +1,5 @@
-import Header from "../../components/Header_Logeado";
+import Header from "../../components/Header";
+
 import wine from "../../assets/ImgWine.png";
 import styles from "../../styles/Home.module.css";
 import { useState, useEffect, useContext } from "react";
