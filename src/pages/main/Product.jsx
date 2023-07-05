@@ -46,6 +46,7 @@ function Product() {
     }
   };
 
+  /*
   const addToCart = (selectedProduct) => {
     // Obtener el carrito actual del localStorage
     const cartItems = JSON.parse(localStorage.getItem("cart")) || [];
@@ -83,7 +84,7 @@ function Product() {
     // Cerrar el modal y reiniciar el contador
     setShowModalProduct(false);
     setModalCount(1);
-  };
+  };*/
 
   const getCartItemCount = (productId) => {
     const cartItems = JSON.parse(localStorage.getItem("cart")) || [];

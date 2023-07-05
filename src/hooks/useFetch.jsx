@@ -1,18 +1,14 @@
 const useFetch = () => {
-
   const getProfile = async (token) => {
-    console.log(token)
+    console.log(token);
     try {
-      const response = await fetch(
-        "http://localhost:3000/api/auth/profile",
-        {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`
-          },
-
-        })
+      const response = await fetch("http://localhost:3000/api/auth/profile", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      });
       if (response.ok) {
         const data = await response.json();
         return data;
@@ -21,20 +17,16 @@ const useFetch = () => {
       }
     } catch (error) {
       throw new Error("Error de conexión");
-
     }
   };
   //LISTADO ORDERS
   const getOrderList = async (userId) => {
-    const response = await fetch(
-      `http://localhost:3000/api/order/${userId}`,
-      {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    );
+    const response = await fetch(`http://localhost:3000/api/order/${userId}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
     if (response.ok) {
       const data = await response.json();
       return data;
