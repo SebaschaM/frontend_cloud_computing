@@ -39,11 +39,17 @@ function Product() {
       const data = await getProductByBranch(state.selectedBranchId);
       setProductByBranch(data);
       // Eliminar el arreglo de productos del localStorage al cambiar de sucursal
-      localStorage.removeItem("cart");
+      // localStorage.removeItem("cart");
       console.log(data);
     } catch (error) {
       console.log(error);
     }
+  };
+
+  const SalirDeModalReiniciarContador = () => {
+    // Cerrar el modal y reiniciar el contador
+    setShowModalProduct(false);
+    setModalCount(1);
   };
 
   const addToCart = (selectedProduct) => {
@@ -72,6 +78,8 @@ function Product() {
           modalCount <= selectedProduct.stock
             ? modalCount
             : selectedProduct.stock,
+        url: selectedProduct.url,
+        description: selectedProduct.description
       };
 
       cartItems.push(productToAdd);
@@ -134,7 +142,7 @@ function Product() {
                     {category.name}
                   </p>
                 </div>
-                {}
+                { }
                 <div className={styles.category_product_list}>
                   {productByBranch
                     .filter((product) => product.category_id === category.id)
@@ -202,7 +210,7 @@ function Product() {
                       </div>
                     ))}
                 </div>
-                {}
+                { }
               </div>
             </div>
           ))}
@@ -222,9 +230,7 @@ function Product() {
       {showModalProduct && productData && (
         <div
           className={styles.modal}
-          onClick={() => {
-            setShowModalProduct(false);
-          }}
+          onClick={() => { SalirDeModalReiniciarContador() }}
         >
           <div
             className={styles.modal_content}
@@ -358,8 +364,9 @@ function Product() {
               </button>
             </div>
           </div>
-        </div>
-      )}
+        </div >
+      )
+      }
     </>
   );
 }

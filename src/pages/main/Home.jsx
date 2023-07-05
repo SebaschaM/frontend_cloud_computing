@@ -57,6 +57,11 @@ function Home() {
     }
   };
 
+  const SalirDeModalReiniciarContador = () => {
+    // Cerrar el modal y reiniciar el contador
+    setShowModalProduct(false);
+    setModalCount(1);
+  };
   const addToCart = (selectedProduct) => {
     // Obtener el carrito actual del localStorage
     const cartItems = JSON.parse(localStorage.getItem("cart")) || [];
@@ -84,7 +89,7 @@ function Home() {
             ? modalCount
             : selectedProduct.stock,
         url: selectedProduct.url,
-        description: selectedProduct.description,
+        description: selectedProduct.description
       };
 
       cartItems.push(productToAdd);
@@ -382,9 +387,7 @@ function Home() {
       {showModalProduct && productData && (
         <div
           className={styles.modal}
-          onClick={() => {
-            setShowModalProduct(false);
-          }}
+          onClick={() => {SalirDeModalReiniciarContador()}}
         >
           <div
             className={styles.modal_content}
