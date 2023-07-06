@@ -1,18 +1,17 @@
 const useFetch = () => {
-
   const getProfile = async (token) => {
-    console.log(token)
+    console.log(token);
     try {
       const response = await fetch(
-        "http://localhost:3000/api/auth/profile",
+        "http://3.87.161.115:3000/api/auth/profile",
         {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`
+            Authorization: `Bearer ${token}`,
           },
-
-        })
+        }
+      );
       if (response.ok) {
         const data = await response.json();
         return data;
@@ -21,13 +20,12 @@ const useFetch = () => {
       }
     } catch (error) {
       throw new Error("Error de conexión");
-
     }
   };
   //LISTADO ORDERS
   const getOrderList = async (userId) => {
     const response = await fetch(
-      `http://localhost:3000/api/order/${userId}`,
+      `http://3.87.161.115:3000/api/order/${userId}`,
       {
         method: "GET",
         headers: {
@@ -45,7 +43,7 @@ const useFetch = () => {
   //LISTADO DE SUCURSALES
   const getBranchList = async () => {
     try {
-      const response = await fetch("http://localhost:3000/api/branch", {
+      const response = await fetch("http://3.87.161.115:3000/api/branch", {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -63,10 +61,9 @@ const useFetch = () => {
     }
   };
 
-
   const getProductByBranch = async (branchId) => {
     const response = await fetch(
-      `http://localhost:3000/api/product/${branchId}`,
+      `http://3.87.161.115:3000/api/product/${branchId}`,
       {
         method: "GET",
         headers: {
@@ -84,7 +81,7 @@ const useFetch = () => {
 
   const getDetailProduct = async (productId) => {
     const response = await fetch(
-      `http://localhost:3000/api/product/find/${productId}`,
+      `http://3.87.161.115:3000/api/product/find/${productId}`,
       {
         method: "GET",
         headers: {
@@ -102,7 +99,7 @@ const useFetch = () => {
 
   const getCategoryList = async () => {
     const response = await fetch(
-      "http://localhost:3000/api/product/findAll/category",
+      "http://3.87.161.115:3000/api/product/findAll/category",
       {
         method: "GET",
         headers: {
@@ -120,7 +117,7 @@ const useFetch = () => {
   /*
   const getProductByCategoryByBranch = async (categoryId, branchId) => {
     const response = await fetch(
-      `http://localhost:3000/api/product/find/category/${categoryId}?idBranch=${branchId}`,
+      `http://3.87.161.115:3000/api/product/find/category/${categoryId}?idBranch=${branchId}`,
       {
         method: "GET",
         headers: {
