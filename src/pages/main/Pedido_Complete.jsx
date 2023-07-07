@@ -2,20 +2,19 @@ import Header from "../../components/Header";
 import Next from "../../assets/icon-next.svg";
 import Product from "../../assets/Wine.png";
 import styles from "../../styles/Pedido.module.css";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import useFetch from "../../hooks/useFetch.JSX";
 const { getOrderList } = useFetch();
 
 function Pedido_Complete() {
-
   const [showModalProduct, setShowModalProduct] = useState(false);
   const [ordeList, setOrdeList] = useState([]);
-  const [idOrder, setIdOrder] = useState('');
+  const [idOrder, setIdOrder] = useState("");
 
   const handleOrderList = async () => {
     try {
-      const user = localStorage.getItem('user');
+      const user = localStorage.getItem("user");
       if (user) {
         const userData = JSON.parse(user);
         const data = await getOrderList(userData.user.id);
@@ -25,10 +24,10 @@ function Pedido_Complete() {
       console.log(error);
     }
   };
-  
+
   const handleDetailOrder = async (idOrder) => {
     try {
-      setIdOrder(idOrder)
+      setIdOrder(idOrder);
     } catch (error) {
       console.log(error);
     }
@@ -51,20 +50,28 @@ function Pedido_Complete() {
           </div>
           <div className={styles.content_buton_Pedido}>
             <Link to="/pedidosActivo" className={styles.btn_Activo_Complete}>
-              <button className={`${styles.btn_Activo} ${styles.btnNoselect}`}>Activos</button>
+              <button className={`${styles.btn_Activo} ${styles.btnNoselect}`}>
+                Activos
+              </button>
             </Link>
             <Link to="/pedidosActivo" className={styles.btn_Activo_Complete}>
-              <button className={`${styles.btn_Completado} ${styles.btnSelect}`}>Completados</button>
+              <button
+                className={`${styles.btn_Completado} ${styles.btnSelect}`}
+              >
+                Completados
+              </button>
             </Link>
           </div>
         </div>
 
         <div className={styles.content_listado_pedidos}>
-
           {/* LISTA DE ORDENES COMPLETADOS */}
           {ordeList
-            .filter((order, index, self) => self.findIndex(o => o.order_id === order.order_id) === index)
-            .filter(order => order.state_id === 2)
+            .filter(
+              (order, index, self) =>
+                self.findIndex((o) => o.order_id === order.order_id) === index
+            )
+            .filter((order) => order.state_id === 2)
             .slice(0, 3)
             .map((order) => (
               <div
@@ -75,10 +82,14 @@ function Pedido_Complete() {
                 }}
               >
                 <div className={styles.pedido_description}>
-                  <p className={styles.description_title}>Código de Pedido N° {order.order_id}</p>
+                  <p className={styles.description_title}>
+                    Código de Pedido N° {order.order_id}
+                  </p>
                   <div className={styles.description_base}>
                     <p className={styles.base}>Productos:</p>
-                    <p className={styles.text_content_pedido}>{order.quantity}</p>
+                    <p className={styles.text_content_pedido}>
+                      {order.quantity}
+                    </p>
                   </div>
                   <div className={styles.description_base}>
                     <p className={styles.base}>Precio Total:</p>
@@ -109,7 +120,9 @@ function Pedido_Complete() {
           <div className={styles.content_modal_pedido}>
             <div className={styles.content__modal_text}>
               <p className={styles.title_modal_pedido}>Detalle pedido</p>
-              <p className={styles.title2_modal_pedido}>Código de Pedido N° {idOrder}</p>
+              <p className={styles.title2_modal_pedido}>
+                Código de Pedido N° {idOrder}
+              </p>
               <p className={styles.description_modal_pedido}>
                 Pedidos completados y pendientes, cancela en cualquier momento o
                 pidelo de nuevo.
@@ -120,7 +133,7 @@ function Pedido_Complete() {
             <div className={styles.content_list_product}>
               {/* LISTADO DE DETALLE ORDEN */}
               {ordeList
-                .filter(order => order.order_id === idOrder)
+                .filter((order) => order.order_id === idOrder)
                 .slice(0, 3)
                 .map((order) => (
                   <div className={styles.content_unidad_product}>
@@ -134,11 +147,15 @@ function Pedido_Complete() {
                         </p>
                         <div className={styles.product_description_base}>
                           <p className={styles.product_base}>Descripción:</p>
-                          <p className={styles.product_text_content_pedido}>{order.description}</p>
+                          <p className={styles.product_text_content_pedido}>
+                            {order.description}
+                          </p>
                         </div>
                         <div className={styles.product_description_base}>
                           <p className={styles.product_base}>Cantidad:</p>
-                          <p className={styles.product_text_content_pedido}>{order.quantity}</p>
+                          <p className={styles.product_text_content_pedido}>
+                            {order.quantity}
+                          </p>
                         </div>
                       </div>
                     </div>
@@ -146,16 +163,17 @@ function Pedido_Complete() {
                       <p>{order.subtotal}</p>
                     </div>
                   </div>
-
                 ))}
             </div>
 
             <div className={styles.content_button}>
               <div className={styles.pedido_btn}>
                 <button className={styles.Pedir}>
-                  <p className={styles.btn_total}>{ordeList
-                    .filter(order => order.order_id === idOrder)
-                    .reduce((total, order) => total + order.subtotal, 0)}</p>
+                  <p className={styles.btn_total}>
+                    {ordeList
+                      .filter((order) => order.order_id === idOrder)
+                      .reduce((total, order) => total + order.subtotal, 0)}
+                  </p>
                   Pedir de Nuevo
                   <span className={styles.icon}>
                     <img src={Next} />

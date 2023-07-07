@@ -12,30 +12,31 @@ import O4 from "../../assets/plin.png";
 import styles from "../../styles/Carrito.module.css";
 import styles2 from "../../styles/Pedido.module.css";
 import { useState, useEffect } from "react";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../hooks/useAuth";
 
-
 function Carrito() {
-
   const navigate = useNavigate();
   const { CrearOrder } = useAuth();
   const [carrito, setCarrito] = useState([]);
-  const [total, setTotal] = useState('');
+  const [total, setTotal] = useState("");
 
   const [logeado, setLogeado] = useState(false);
   const [sinlogear, setSinlogear] = useState(false);
   const [showModalLogeo, setShowModalLogeo] = useState(false);
 
   useEffect(() => {
-    const card = localStorage.getItem('cart');
-    const user = localStorage.getItem('user');
+    const card = localStorage.getItem("cart");
+    const user = localStorage.getItem("user");
 
     if (card) {
       const Card = JSON.parse(card);
       //Subtotal
       const subtotales = Card.map((card) => card.price * card.quantity);
-      const total = subtotales.reduce((acumulador, subtotal) => acumulador + subtotal, 0);
+      const total = subtotales.reduce(
+        (acumulador, subtotal) => acumulador + subtotal,
+        0
+      );
       setCarrito(Card);
       setTotal(total);
     }
@@ -49,34 +50,37 @@ function Carrito() {
   }, []);
 
   const handleDeleteProduct = (idProduct) => {
-    const productIndex = carrito.findIndex(item => item.id === idProduct);
+    const productIndex = carrito.findIndex((item) => item.id === idProduct);
 
     if (productIndex !== -1) {
       const updatedCarrito = [...carrito];
       // Eliminar el producto del localstorage
       updatedCarrito.splice(productIndex, 1);
       setCarrito(updatedCarrito);
-      localStorage.setItem('cart', JSON.stringify(updatedCarrito)); // Guardar el carrito actualizado en el LocalStorage
+      localStorage.setItem("cart", JSON.stringify(updatedCarrito)); // Guardar el carrito actualizado en el LocalStorage
 
-      const card = localStorage.getItem('cart');
+      const card = localStorage.getItem("cart");
       if (card) {
         const Card = JSON.parse(card);
         //Actualizar Subtotal
         const subtotales = Card.map((card) => card.price * card.quantity);
-        const total = subtotales.reduce((acumulador, subtotal) => acumulador + subtotal, 0);
+        const total = subtotales.reduce(
+          (acumulador, subtotal) => acumulador + subtotal,
+          0
+        );
 
         setTotal(total);
       }
     } else {
-      console.log('El producto no existe en el carrito.');
+      console.log("El producto no existe en el carrito.");
     }
   };
 
   const handleCreateOrder = async (event) => {
     event.preventDefault();
     // event.preventDefault();
-    const user = localStorage.getItem('user');
-    const card = localStorage.getItem('cart');
+    const user = localStorage.getItem("user");
+    const card = localStorage.getItem("cart");
 
     if (card) {
       const Card = JSON.parse(card);
@@ -85,8 +89,8 @@ function Carrito() {
       //Fecha actual
       const currentDate = new Date();
       const year = currentDate.getFullYear();
-      const month = String(currentDate.getMonth() + 1).padStart(2, '0');
-      const day = String(currentDate.getDate()).padStart(2, '0');
+      const month = String(currentDate.getMonth() + 1).padStart(2, "0");
+      const day = String(currentDate.getDate()).padStart(2, "0");
       const FechaActual = `${year}-${month}-${day}`;
 
       //INTERACCION POR CADA PRODUCTO
@@ -101,20 +105,19 @@ function Carrito() {
           state_id: 1,
           user_id: userData.user.id,
           quantity: quantity,
-          product_id: id
+          product_id: id,
         };
 
         try {
           const response = await CrearOrder(order);
-          console.log('Pedido creado:', response);
+          console.log("Pedido creado:", response);
           navigate("/");
         } catch (error) {
-          console.log('Error al crear el pedido:', error);
+          console.log("Error al crear el pedido:", error);
         }
       }
       localStorage.removeItem("cart");
     }
-
   };
 
   return (
@@ -135,7 +138,9 @@ function Carrito() {
                   </p>
                   <div className={styles2.product_description_base}>
                     <p className={styles2.product_base}>Descripción:</p>
-                    <p className={styles2.product_text_content_pedido}>{card.description}</p>
+                    <p className={styles2.product_text_content_pedido}>
+                      {card.description}
+                    </p>
                   </div>
                 </div>
               </div>
@@ -143,13 +148,17 @@ function Carrito() {
                 <input
                   className={`${styles.cantidad_input} ${styles.input_carrito}`}
                   type="number"
-                  defaultValue={card.quantity} />
+                  defaultValue={card.quantity}
+                />
               </div>
               <div className={styles.product_price}>
                 <p>{card.price * card.quantity}</p>
               </div>
               <div className={styles.delete_btn}>
-                <button className={styles.Delete} onClick={() => handleDeleteProduct(card.id)}>
+                <button
+                  className={styles.Delete}
+                  onClick={() => handleDeleteProduct(card.id)}
+                >
                   <img src={Delete} />
                 </button>
               </div>
@@ -163,35 +172,63 @@ function Carrito() {
               <p className={styles.title_card}>Detalle de tarjeta</p>
             </div>
 
-            <form onSubmit={handleCreateOrder} className={styles.content_form_carrito}>
+            <form
+              onSubmit={handleCreateOrder}
+              className={styles.content_form_carrito}
+            >
               <div className={styles.content_tipo_tarjeta}>
                 <p className={styles.title}>Tipo de tarjeta</p>
                 <div className={styles.content_tarjeta_img}>
                   <div>
-                    <img className={styles.img_target_1} src={O1} /></div>
+                    <img className={styles.img_target_1} src={O1} />
+                  </div>
                   <div>
-                    <img className={styles.img_target_2} src={O2} /></div>
+                    <img className={styles.img_target_2} src={O2} />
+                  </div>
                   <div>
-                    <img className={styles.img_target_3} src={O3} /></div>
+                    <img className={styles.img_target_3} src={O3} />
+                  </div>
                   <div>
-                    <img className={styles.img_target_4} src={O4} /></div>
+                    <img className={styles.img_target_4} src={O4} />
+                  </div>
                 </div>
               </div>
               <div className={styles.content_nombre_tarjeta}>
                 <p className={styles.title}>Nombre del propietario</p>
-                <input className={`${styles.nombre_tarjeta} ${styles.input_carrito}`} type="text" placeholder="Nombre del propietario" required />
+                <input
+                  className={`${styles.nombre_tarjeta} ${styles.input_carrito}`}
+                  type="text"
+                  placeholder="Nombre del propietario"
+                  required
+                />
                 <p className={styles.title}>Número de tarjeta</p>
-                <input className={`${styles.nombre_tarjeta} ${styles.input_carrito}`} type="number" placeholder="1111 2222 3333 4444" required />
+                <input
+                  className={`${styles.nombre_tarjeta} ${styles.input_carrito}`}
+                  type="number"
+                  placeholder="1111 2222 3333 4444"
+                  required
+                />
               </div>
 
               <div className={styles.content_fecha}>
                 <div className={styles.fecha_input}>
                   <p className={styles.title}>Fecha de caducidad</p>
-                  <input className={`${styles.fecha_input_targeta} ${styles.input_carrito}`} type="date" placeholder="MM/AA" required />
+                  <input
+                    className={`${styles.fecha_input_targeta} ${styles.input_carrito}`}
+                    type="date"
+                    placeholder="MM/AA"
+                    required
+                  />
                 </div>
                 <div className={styles.fecha_input}>
                   <p className={styles.title}>CVV</p>
-                  <input className={`${styles.fecha_input_targeta} ${styles.input_carrito}`} type="number" placeholder="CVV" required maxLength="3" />
+                  <input
+                    className={`${styles.fecha_input_targeta} ${styles.input_carrito}`}
+                    type="number"
+                    placeholder="CVV"
+                    required
+                    maxLength="3"
+                  />
                 </div>
               </div>
 
@@ -210,7 +247,6 @@ function Carrito() {
                 </div>
               </div>
               <div className={styles2.pedido_btn}>
-
                 {logeado && (
                   <button className={styles2.Pedir} type="submit">
                     <p className={styles2.btn_total}>S/.{total + 5}</p>
@@ -222,8 +258,10 @@ function Carrito() {
                 )}
                 {/* Button sin logear */}
                 {sinlogear && (
-                  <button className={styles2.Pedir}
-                    onClick={() => setShowModalLogeo(true)}>
+                  <button
+                    className={styles2.Pedir}
+                    onClick={() => setShowModalLogeo(true)}
+                  >
                     <p className={styles2.btn_total}>S/.{total + 5}</p>
                     Pagar Ahora
                     <span className={styles2.icon}>
@@ -247,12 +285,12 @@ function Carrito() {
             <div className={styles.content_text}>
               <p className={styles.title_pedido}>Inicia Sesión</p>
               <p className={styles.description_pedido}>
-                Iniciar sesión o registrate para realizar tu compra. ¡Te esperamos!
+                Iniciar sesión o registrate para realizar tu compra. ¡Te
+                esperamos!
               </p>
             </div>
             <div className={styles.separacion}></div>
             <div className={styles2.content_button}>
-
               <Link to="/login">
                 <button className={styles.inicia_sesion}>
                   Iniciar Sesión

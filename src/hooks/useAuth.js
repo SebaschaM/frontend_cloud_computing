@@ -3,16 +3,19 @@ import { json } from "react-router-dom";
 function useAuth() {
   async function Login(email, password) {
     try {
-      const response = await fetch("http://3.87.161.115:3000/api/auth/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          email,
-          password,
-        }),
-      });
+      const response = await fetch(
+        "http://18.207.222.146:3000/api/auth/login",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            email,
+            password,
+          }),
+        }
+      );
 
       const data = response.json();
       if (data.token !== "") {
@@ -26,7 +29,7 @@ function useAuth() {
   async function Register(fullname, email, password, phone) {
     try {
       const response = await fetch(
-        "http://3.87.161.115:3000/api/auth/register",
+        "http://18.207.222.146:3000/api/auth/register",
         {
           method: "POST",
           headers: {
@@ -51,7 +54,7 @@ function useAuth() {
   async function ActualizarPerfil(body, token) {
     try {
       const response = await fetch(
-        "http://3.87.161.115:3000/api/auth/updateprofile",
+        "http://18.207.222.146:3000/api/auth/updateprofile",
         {
           method: "POST",
           headers: {
@@ -71,7 +74,7 @@ function useAuth() {
 
   async function CrearOrder(order) {
     try {
-      const response = await fetch("http://3.87.161.115:3000/api/order", {
+      const response = await fetch("http://18.207.222.146:3000/api/order", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
