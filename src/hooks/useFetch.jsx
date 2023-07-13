@@ -3,7 +3,7 @@ const useFetch = () => {
     console.log(token);
     try {
       const response = await fetch(
-        "http://18.208.183.10:3000/api/auth/profile",
+        "http://cloud-computing-back.onrender.com/api/auth/profile",
         {
           method: "GET",
           headers: {
@@ -25,7 +25,7 @@ const useFetch = () => {
   //LISTADO ORDERS
   const getOrderList = async (userId) => {
     const response = await fetch(
-      `http://18.208.183.10:3000/api/order/${userId}`,
+      `http://cloud-computing-back.onrender.com/api/order/${userId}`,
       {
         method: "GET",
         headers: {
@@ -43,12 +43,15 @@ const useFetch = () => {
   //LISTADO DE SUCURSALES
   const getBranchList = async () => {
     try {
-      const response = await fetch("http://18.208.183.10:3000/api/branch", {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
+      const response = await fetch(
+        "http://cloud-computing-back.onrender.com/api/branch",
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
 
       if (response.ok) {
         const data = await response.json();
@@ -63,7 +66,7 @@ const useFetch = () => {
 
   const getProductByBranch = async (branchId) => {
     const response = await fetch(
-      `http://18.208.183.10:3000/api/product/${branchId}`,
+      `http://cloud-computing-back.onrender.com/api/product/${branchId}`,
       {
         method: "GET",
         headers: {
@@ -81,7 +84,7 @@ const useFetch = () => {
 
   const getDetailProduct = async (productId) => {
     const response = await fetch(
-      `http://18.208.183.10:3000/api/product/find/${productId}`,
+      `http://cloud-computing-back.onrender.com/api/product/find/${productId}`,
       {
         method: "GET",
         headers: {
@@ -99,7 +102,7 @@ const useFetch = () => {
 
   const getCategoryList = async () => {
     const response = await fetch(
-      "http://18.208.183.10:3000/api/product/findAll/category",
+      "http://cloud-computing-back.onrender.com/api/product/findAll/category",
       {
         method: "GET",
         headers: {
@@ -117,7 +120,7 @@ const useFetch = () => {
   /*
   const getProductByCategoryByBranch = async (categoryId, branchId) => {
     const response = await fetch(
-      `http://3.87.161.115:3000/api/product/find/category/${categoryId}?idBranch=${branchId}`,
+      `http://cloud-computing-back.onrender.com/api/product/find/category/${categoryId}?idBranch=${branchId}`,
       {
         method: "GET",
         headers: {
