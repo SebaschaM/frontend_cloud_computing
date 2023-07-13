@@ -3,7 +3,7 @@ const useFetch = () => {
     console.log(token);
     try {
       const response = await fetch(
-        "http://cloud-computing-back.onrender.com/api/auth/profile",
+        "https://cloud-computing-back.onrender.com/api/auth/profile",
         {
           method: "GET",
           headers: {
@@ -25,7 +25,7 @@ const useFetch = () => {
   //LISTADO ORDERS
   const getOrderList = async (userId) => {
     const response = await fetch(
-      `http://cloud-computing-back.onrender.com/api/order/${userId}`,
+      `https://cloud-computing-back.onrender.com/api/order/${userId}`,
       {
         method: "GET",
         headers: {
@@ -44,7 +44,7 @@ const useFetch = () => {
   const getBranchList = async () => {
     try {
       const response = await fetch(
-        "http://cloud-computing-back.onrender.com/api/branch",
+        "https://cloud-computing-back.onrender.com/api/branch",
         {
           method: "GET",
           headers: {
@@ -66,7 +66,7 @@ const useFetch = () => {
 
   const getProductByBranch = async (branchId) => {
     const response = await fetch(
-      `http://cloud-computing-back.onrender.com/api/product/${branchId}`,
+      `https://cloud-computing-back.onrender.com/api/product/${branchId}`,
       {
         method: "GET",
         headers: {
@@ -84,7 +84,7 @@ const useFetch = () => {
 
   const getDetailProduct = async (productId) => {
     const response = await fetch(
-      `http://cloud-computing-back.onrender.com/api/product/find/${productId}`,
+      `https://cloud-computing-back.onrender.com/api/product/find/${productId}`,
       {
         method: "GET",
         headers: {
@@ -102,7 +102,7 @@ const useFetch = () => {
 
   const getCategoryList = async () => {
     const response = await fetch(
-      "http://cloud-computing-back.onrender.com/api/product/findAll/category",
+      "https://cloud-computing-back.onrender.com/api/product/findAll/category",
       {
         method: "GET",
         headers: {

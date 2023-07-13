@@ -4,7 +4,7 @@ function useAuth() {
   async function Login(email, password) {
     try {
       const response = await fetch(
-        "http://cloud-computing-back.onrender.com/api/auth/login",
+        "https://cloud-computing-back.onrender.com/api/auth/login",
         {
           method: "POST",
           headers: {
@@ -29,7 +29,7 @@ function useAuth() {
   async function Register(fullname, email, password, phone) {
     try {
       const response = await fetch(
-        "http://cloud-computing-back.onrender.com/api/auth/register",
+        "https://cloud-computing-back.onrender.com/api/auth/register",
         {
           method: "POST",
           headers: {
@@ -54,7 +54,7 @@ function useAuth() {
   async function ActualizarPerfil(body, token) {
     try {
       const response = await fetch(
-        "http://cloud-computing-back.onrender.com/api/auth/updateprofile",
+        "https://cloud-computing-back.onrender.com/api/auth/updateprofile",
         {
           method: "POST",
           headers: {
@@ -75,7 +75,7 @@ function useAuth() {
   async function CrearOrder(order) {
     try {
       const response = await fetch(
-        "http://cloud-computing-back.onrender.com/api/order",
+        "https://cloud-computing-back.onrender.com/api/order",
         {
           method: "POST",
           headers: {
